@@ -71,5 +71,5 @@ app.post('/addIfta', ifta.addIfta);
 
 // Start server
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`\n======\nExample app listening on port ${port}\n======\n`);
 })
