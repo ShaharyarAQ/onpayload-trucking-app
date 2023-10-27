@@ -1,0 +1,135 @@
+<div class="content">
+    <div class=" row">
+        <div>
+            <div class=" card">
+                <div class=" card-header">
+                    <h3 class=" title">Add Income</h3>
+                </div>
+                <div class=" card-body">
+                    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+                        <div class=" row">
+                            <div class=" col-md-4 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="exampleInputEmail1">Date</label>
+                                    <input class=" form-control" placeholder="" type="date"
+                                    ngModel name="date" />
+                                </div>
+                            </div>
+                            <div class=" col-md-4 px-md-1">
+                                <div class=" form-group">
+                                    <label for="exampleInputEmail1">Reference</label>
+                                    <input class=" form-control" placeholder="" type="text"
+                                    ngModel name="reference" />
+                                </div>
+                            </div>
+                            <div class=" col-md-4 pl-md-1">
+                                <div class=" form-group">
+                                    <label for="exampleInputEmail1">Payer</label>
+                                    <input class=" form-control" placeholder="" type="text"
+                                    ngModel name="payer" />
+                                </div>
+                            </div>                       
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-4 pr-md-1">
+                                <div class=" form-group">
+                                    <label> Amount </label>
+                                    <input class=" form-control" placeholder="" type="text" value=""
+                                    ngModel name="amount" />
+                                </div>
+                            </div>
+                            <div class=" col-md-4 px-md-1">
+                                <div class=" form-group">
+                                    <label> Payment Type </label>
+                                    <select class="form-control" aria-label="Default select example"
+                                    ngModel name="paymentType">
+                                        <option selected>Choose an Option</option>
+                                        <option value="Cash">Cash</option>
+                                        <option value="Cheque">Cheque</option>
+                                        <option value="Credit Card">Credit Card</option>
+                                        <option value="EFT">EFT</option>
+                                        <option value="ACH">ACH</option>
+                                        <option value="Direct Deposit">Direct Deposit</option>
+                                        <option value="Zelle">Zelle</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-4 pl-md-1">
+                                <div class=" form-group">
+                                    <label> Processed By </label>
+                                    <input class=" form-control" placeholder="" type="text" value=""
+                                    ngModel name="processedBy" />
+                                </div>
+                            </div>                          
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-5 pr-md-1">
+                                <div class=" form-group">
+                                    <label> Income Category </label>
+                                    <select class="form-control" aria-label="Default select example"
+                                    ngModel name="incomeCategory">
+                                        <option selected>Choose an Option</option>
+                                        <option value="Loads">Loads</option>
+                                        <option value="Sales">Sales</option>
+                                        <option value="Rental">Rental</option>
+                                        <option value="Dispatch">Dispatch</option>
+                                        <option value="Leasing">Leasing</option>
+                                        <option value="Consulting">Consulting</option>
+                                        <option value="Accesorial">Accesorial</option>
+                                        <option value="Advance">Advance</option>
+                                        <option value="Fuel Surcharge">Fuel Surcharge</option>
+                                        <option value="Reimbursement">Reimbursement</option>
+                                        <option value="Repair Services">Repair Services</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-6 px-md-1">
+                                <div class=" form-group">
+                                    <label> Select a Vehicle </label>
+                                    <select class="form-control" aria-label="Default select example"
+                                    ngModel name="vehicle">
+                                        <option selected>Select Vehicle</option>
+                                        <option value="Vehicle 1">Vehicle 1</option>
+                                        <option value="Vehicle 2">Vehicle 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-1 px-md-1 float-right pt-4">
+                                <button type="button" rel="tooltip" class="btn btn-warning btn-icon btn-sm"
+                                    (click)="addVehicle()">
+                                    <i class=" tim-icons icon-simple-add"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-6 pr-md-1">
+                                <div class=" form-group">
+                                    <div>
+                                        <form action="/action_page.php">
+                                            <label>Upload File</label>
+                                            &nbsp;
+                                            <input type="file" id="myFile" name="filename">
+                                            <input type="submit">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-12">
+                                <div class=" form-group">
+                                    <label>Note</label>
+                                    <textarea class=" form-control" cols="" placeholder="" rows="" value=""
+                                    ngModel name="note"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row float-right">
+                            <button type="submit" class="btn btn-danger">Add Income</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>

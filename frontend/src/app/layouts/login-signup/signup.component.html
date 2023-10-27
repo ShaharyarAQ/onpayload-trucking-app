@@ -1,0 +1,36 @@
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 mx-auto">
+            <form>
+                <div class="form-group">
+                    <input type="email" class="form-control form-control-sm" aria-describedby="emailHelp"
+                        placeholder="Enter Email" ngModel name="email" required email #email="ngModel">
+                    <span class="help-block" *ngIf="!email.valid && email.touched"><br>Please enter a valid
+                        email!</span>
+                </div>   
+                <br>
+                <div class="form-group">
+                    <input type="password" class="form-control form-control-sm" placeholder="Create a Password"
+                        name="password" required minlength="8">
+                    <!-- <span class="help-block"><br>Password should have at least 8
+                        characters</span> -->
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-sm" id="firstname" aria-describedby="firstname"
+                        placeholder="Enter Company Name" name="username" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-sm" id="firstname" aria-describedby="firstname"
+                        placeholder="Enter Contact No." name="username" required>
+                </div>
+                <hr>
+                <button type="submit" class="btn btn-danger">Signup</button>
+                &nbsp;&nbsp;Have an Account? <a routerLink=""><b>Login</b></a>
+            </form>
+        </div>
+    </div>
+</div>

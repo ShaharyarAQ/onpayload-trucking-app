@@ -1,0 +1,63 @@
+<div class="container-row content">
+    <h2>Invoices</h2>
+    <div class="row">
+      <div class="col-md-8 col-sm-4">
+        <button type="button" class="btn btn-warning" style="color: black; font-weight:300;" (click)="addInvoice()">Add Invoice</button>      </div>
+      <div class="col-md-4 col-sm-8 float-right">
+        <input type="text" class="form-control" placeholder="Search">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table tablesorter" id="">
+            <thead class="text-primary">
+              <tr>
+                <th>Date</th>
+                <th>Invoice ID</th>
+                <th>Client</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Amount</th>
+                <th>Actions</th> 
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>09/09/23</td>
+                <td>1252</td>
+                <td>David Beckam</td>
+                <td>First Invoice</td>
+                <td><h3 style="color: green;" class="mt-3"><strong>Paid</strong></h3></td>
+                <td>$7500</td>
+                <td>
+                  <button type="button" rel="tooltip" class="btn btn-link btn-icon btn-sm">
+                    <i class=" tim-icons icon-alert-circle-exc" (click)="invoiceInfo()"></i>
+                  </button>
+                  <button type="button" rel="tooltip" class="btn btn-link btn-icon btn-sm">
+                    <i class=" tim-icons icon-trash-simple" (click)="delete()"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>09/15/23</td>
+                <td>7321</td>
+                <td>Sergio Ramos</td>
+                <td>Second Invoice</td>
+                <td><h3 style="color: red;" class="mt-3"><strong>Unpaid</strong></h3></td>
+                <td>$3200</td>
+                <td>
+                  <button type="button" rel="tooltip" class="btn btn-link btn-icon btn-sm">
+                    <i class=" tim-icons icon-alert-circle-exc" (click)="invoiceInfo()"></i>
+                  </button>
+                  <button type="button" rel="tooltip" class="btn btn-link btn-icon btn-sm">
+                    <i class=" tim-icons icon-trash-simple" (click)="delete()"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,130 @@
+
+<div class=" content">
+    <div class=" row">
+        <div class=" col-md-12">
+            <div class=" card">
+                <div class=" card-header">
+                    <h3 class=" title">Add Vehicle</h3>
+                </div>
+                <div class=" card-body">
+                    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+                        <div class=" row">
+                            <div class=" col-md-4 pr-md-1">
+                                <div class=" form-group">
+                                    <label>Unit Number</label>
+                                    <input class=" form-control" type="text" 
+                                    [value]="isUpdate ? vehicleInfo.unitNumber : ''"
+                                    ngModel name="unitNumber">
+                                </div>
+                            </div>
+                            <div class=" col-md-4 px-md-1">
+                                <div class=" form-group">
+                                    <label> Make </label>
+                                    <input class=" form-control" placeholder="" type="text"
+                                    [value]="isUpdate ? vehicleInfo.make : ''"
+                                    ngModel name="make">
+                                </div>
+                            </div>
+                            <div class=" col-md-4 pl-md-1">
+                                <div class=" form-group">
+                                    <label> Model </label>
+                                    <input class=" form-control" placeholder="" type="text" value=""
+                                    ngModel name="model">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-4 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="exampleInputEmail1">Year</label>
+                                    <input class=" form-control" placeholder="" type="text"
+                                    ngModel name="year">
+                                </div>
+                            </div>
+                            <div class=" col-md-4 px-md-1">
+                                <div class=" form-group">
+                                    <label for="exampleInputEmail1">Odometer</label>
+                                    <input class=" form-control" placeholder="" type="email" 
+                                    ngModel name="odometer">
+                                </div>
+                            </div>
+                            <div class=" col-md-4 pl-md-1">
+                                <div class=" form-group">
+                                    <label> Plate Number </label>
+                                    <input class=" form-control" placeholder="" type="text" value=""
+                                    ngModel name="plateNumber">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col-md-3 pr-md-1">
+                                <div class=" form-group">
+                                    <label> VIN </label>
+                                    <input class=" form-control" placeholder="" type="text" value=""
+                                    ngModel name="vin">
+                                </div>
+                            </div>
+                            <div class=" col-md-4 px-md-1">
+                                <div class=" form-group">
+                                    <label>Vehicle Type</label>
+                                    <select class="form-control" aria-label="Default select example"
+                                    ngModel name="vehicleType">
+                                        <option selected>Choose an Option</option>
+                                        <option value="Truck Tractor">Truck Tractor</option>
+                                        <option value="Pickup Truck">Pickup Truck</option>
+                                        <option value="Box Truck">Box Truck</option>
+                                        <option value="Trailer">Trailer</option>
+                                        <option value="Cargo Van">Cargo Van</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                </div>
+                                <div class=" col-md-4 px-md-1">
+                                    <div class=" form-group">
+                                        <label> Assigned Driver  </label>
+                                        <select class="form-control" aria-label="Default select example"
+                                        ngModel name="assignedDriver">
+                                            <option selected>Choose an Option</option>
+                                            <option value="Driver 1">Driver 1</option>
+                                            <option value="Driver 1">Driver 1</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class=" col-md-1 px-md-1 float-right pt-4">
+                                    <button type="button" rel="tooltip" class="btn btn-warning btn-icon btn-sm">
+                                        <i class=" tim-icons icon-simple-add"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <br>
+                                <div class="row">
+                                    <div class=" col-md-4 pr-md-1">
+                                        <div class=" form-group">
+                                            <div>
+                                                <form action="/action_page.php">
+                                                    <label>Upload File</label>
+                                                    &nbsp;
+                                                    <input type="file" id="myFile" name="filename">
+                                                    <input type="submit">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <br>
+                            <div class=" row">
+                                <div class=" col-md-12">
+                                    <div class=" form-group">
+                                        <label>Note</label>
+                                        <textarea class=" form-control" cols="" placeholder="" rows=""
+                                            value="" ngModel name="note"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row float-right">
+                                <button type="submit" class="btn btn-danger">Add Vehicle</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>

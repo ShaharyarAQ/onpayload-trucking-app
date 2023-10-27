@@ -1,0 +1,165 @@
+<div class="content">
+    <div class=" row">
+        <div>
+            <div class=" card">
+                <div class=" card-header">
+                    <h3 class=" title">Add Expense</h3>
+                </div>
+                <div class=" card-body">
+                    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+                        <div class=" row">
+                            <div class=" col-md-4 pr-md-1">
+                                <div class=" form-group">
+                                    <label for="exampleInputEmail1">Date</label>
+                                    <input class=" form-control" placeholder="" type="date"
+                                    ngModel name="date">
+                                </div>
+                            </div>
+                            <div class=" col-md-4 px-md-1">
+                                <div class=" form-group">
+                                    <label for="exampleInputEmail1">Reference</label>
+                                    <input class=" form-control" placeholder="" type="text" 
+                                    ngModel name="reference">
+                                </div>
+                            </div>
+                            <div class=" col-md-4 pl-md-1">
+                                <div class=" form-group">
+                                    <label for="exampleInputEmail1">Paid By</label>
+                                    <input class=" form-control" placeholder="" type="text" 
+                                    ngModel name="paidBy">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-4 pr-md-1">
+                                <div class=" form-group">
+                                    <label> Amount </label>
+                                    <input class=" form-control" placeholder="" type="text" value=""
+                                    ngModel name="amount" />
+                                </div>
+                            </div>
+                            <div class=" col-md-4 px-md-1">
+                                <div class=" form-group">
+                                    <label> Payment Type </label>
+                                    <select class="form-control" aria-label="Default select example"
+                                    ngModel name="paymentType">
+                                        <option selected>Choose an Option</option>
+                                        <option value="Cash">Cash</option>
+                                        <option value="Cheque">Cheque</option>
+                                        <option value="Credit Card">Credit Card</option>
+                                        <option value="EFT">EFT</option>
+                                        <option value="ACH">ACH</option>
+                                        <option value="Direct Deposit">Direct Deposit</option>
+                                        <option value="Zelle">Zelle</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-4 pl-md-1">
+                                <div class=" form-group">
+                                    <label> Payee </label>
+                                    <input class=" form-control" placeholder="" type="text" value="" 
+                                    ngModel name="payee">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-5 pr-md-1">
+                                <div class=" form-group">
+                                    <label> Expense Category </label>
+                                    <select class="form-control" aria-label="Default select example"
+                                    ngModel name="expenseCategory">
+                                        <option selected>Choose an Option</option>
+                                        <option value="Accessorial Deduction">Accessorial Deduction</option>
+                                        <option value="Accessorial Expense">Accessorial Expense</option>
+                                        <option value="Accident Deductible">Accident Deductible</option>
+                                        <option value="Escrow-Maintenance">Escrow-Maintenance</option>
+                                        <option value="Factoring Charges">Factoring Charges</option>
+                                        <option value="Fax">Fax</option>
+                                        <option value="Insurance-Health">Insurance-Health</option>
+                                        <option value="Insurance-Trailer">Insurance-Trailer</option>
+                                        <option value="Insurance-Truck">Insurance-Truck</option>
+                                        <option value="Internet Fees">Internet Fees</option>
+                                        <option value="Lodging">Lodging</option>
+                                        <option value="Lumper Fee">Lumper Fee</option>
+                                        <option value="Maintenence">Maintenence</option>
+                                        <option value="Meals">Meals</option>
+                                        <option value="Miscellaneous">Miscellaneous</option>
+                                        <option value="Office Supplies">Office Supplies</option>
+                                        <option value="Oil and/or Additives">Oil and/or Additives</option>
+                                        <option value="Other Expense">Other Expense</option>
+                                        <option value="Parking">Parking</option>
+                                        <option value="Payments">Payments</option>
+                                        <option value="Payroll Taxes">Payroll Taxes</option>
+                                        <option value="Permits">Permits</option>
+                                        <option value="Physical (DOT)">Physical (DOT)</option>
+                                        <option value="Processing Fees">Processing Fees</option>
+                                        <option value="Reimbursement">Reimbursement</option>
+                                        <option value="Rent">Rent</option>
+                                        <option value="Repair">Repair</option>
+                                        <option value="Safety Clothing">Safety Clothing</option>
+                                        <option value="Scale Tickets">Scale Tickets</option>
+                                        <option value="Showers">Showers</option>
+                                        <option value="STAX">STAX</option>
+                                        <option value="Tax Paid">Tax Paid</option>
+                                        <option value="Toll">Toll</option>
+                                        <option value="Trailer Lease Payment">Trailer Lease Payment</option>
+                                        <option value="Truck Lease Payment">Truck Lease Payment</option>
+                                        <option value="Truck Parts">Truck Parts</option>
+                                        <option value="Truck Repair and Maintenence">Truck Repair and Maintenence</option>
+                                        <option value="Truck Tires">Truck Tires</option>
+                                        <option value="Truck Washes">Truck Washes</option>
+                                        <option value="Utilities">Utilities</option>
+                                        <option value="Wages">Wages</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-6 px-md-1">
+                                <div class=" form-group">
+                                    <label> Select a Vehicle </label>
+                                    <select class="form-control" aria-label="Default select example"
+                                    ngModel name="vehicle">
+                                        <option selected>Select Vehicle</option>
+                                        <option value="Vehicle 1">Vehicle 1</option>
+                                        <option value="Vehicle 2">Vehicle 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-md-1 px-md-1 float-right pt-4">
+                                <button type="button" rel="tooltip" class="btn btn-warning btn-icon btn-sm"
+                                    (click)="addVehicle()">
+                                    <i class=" tim-icons icon-simple-add"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-6 pr-md-1">
+                                <div class=" form-group">
+                                    <div>
+                                        <form action="/action_page.php">
+                                            <label>Upload File</label>
+                                            &nbsp;
+                                            <input type="file" id="myFile" name="filename">
+                                            <input type="submit">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-12">
+                                <div class=" form-group">
+                                    <label>Note</label>
+                                    <textarea class=" form-control" cols="" placeholder="" rows="" value=""
+                                    ngModel name="note"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row float-right">
+                            <button type="submit" class="btn btn-danger">Add Expense</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>

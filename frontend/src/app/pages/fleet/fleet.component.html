@@ -1,0 +1,74 @@
+<div class="container-row content">
+  <h2>Fleet</h2>
+  <div class="row">
+    <div class="col-md-8 col-sm-4">
+      <button type="button" class="btn btn-warning" style="color: black; font-weight:300;" (click)="addVehicle()">Add
+        Vehicle</button>
+    </div>
+    <div class="col-md-4 col-sm-8 float-right">
+      <input (keyup)="applyFilter($event.target.value)" type="text" class="form-control" placeholder="Search">
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-12">
+
+
+      <mat-table [dataSource]="dataSource" matSort>
+        
+        <ng-container matColumnDef="unit no.">
+          <mat-header-cell *matHeaderCellDef> Unit No. </mat-header-cell>
+          <mat-cell *matCellDef="let vehicle"> {{vehicle.unitNumber}} </mat-cell>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="make">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Make </mat-header-cell>
+          <mat-cell *matCellDef="let vehicle"> {{vehicle.make}} </mat-cell>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="model">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Model </mat-header-cell>
+          <mat-cell *matCellDef="let vehicle"> {{vehicle.model}} </mat-cell>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="year">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Year </mat-header-cell>
+          <mat-cell *matCellDef="let vehicle"> {{vehicle.year}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="vehicleType">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Vehicle Type </mat-header-cell>
+          <mat-cell *matCellDef="let vehicle"> {{vehicle.vehicleType}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="assignedDriver">
+          <mat-header-cell *matHeaderCellDef> Assigned Driver </mat-header-cell>
+          <mat-cell *matCellDef="let vehicle"> {{vehicle.assignedDriver}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+          <mat-cell *matCellDef="let vehicle"> 
+            <button type="button" rel="tooltip" class="btn btn-link btn-icon btn-sm">
+              <i class=" tim-icons icon-alert-circle-exc" (click)="vehicleInfo(vehicle.id)"></i>
+            </button>
+            <button type="button" rel="tooltip" class="btn btn-link btn-icon btn-sm">
+              <i class=" tim-icons icon-pencil" (click)="updateVehicle(vehicle.id)"></i>
+            </button>
+            <button type="button" rel="tooltip" class="btn btn-link btn-icon btn-sm">
+              <i class=" tim-icons icon-trash-simple" (click)="deleteDialog(vehicle.id)"></i>
+            </button>
+          </mat-cell>
+        </ng-container>
+      
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+      <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>
