@@ -3,30 +3,30 @@
         <div>
             <div class=" card">
                 <div class=" card-header">
-                    <h3 class=" title">Add Income</h3>
+                    <h3 class=" title">{{isUpdate ? 'Update' : 'Add'}} Income</h3>
                 </div>
                 <div class=" card-body">
-                    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+                    <form (ngSubmit)="onSubmit()" [formGroup]="form">
                         <div class=" row">
                             <div class=" col-md-4 pr-md-1">
                                 <div class=" form-group">
                                     <label for="exampleInputEmail1">Date</label>
                                     <input class=" form-control" placeholder="" type="date"
-                                    ngModel name="date" />
+                                    formControlName="date" />
                                 </div>
                             </div>
                             <div class=" col-md-4 px-md-1">
                                 <div class=" form-group">
                                     <label for="exampleInputEmail1">Reference</label>
                                     <input class=" form-control" placeholder="" type="text"
-                                    ngModel name="reference" />
+                                    formControlName="reference" />
                                 </div>
                             </div>
                             <div class=" col-md-4 pl-md-1">
                                 <div class=" form-group">
                                     <label for="exampleInputEmail1">Payer</label>
                                     <input class=" form-control" placeholder="" type="text"
-                                    ngModel name="payer" />
+                                    formControlName="payer" />
                                 </div>
                             </div>                       
                         </div>
@@ -34,15 +34,15 @@
                             <div class=" col-md-4 pr-md-1">
                                 <div class=" form-group">
                                     <label> Amount </label>
-                                    <input class=" form-control" placeholder="" type="text" value=""
-                                    ngModel name="amount" />
+                                    <input class=" form-control" placeholder="" type="text"
+                                    formControlName="amount" />
                                 </div>
                             </div>
                             <div class=" col-md-4 px-md-1">
                                 <div class=" form-group">
                                     <label> Payment Type </label>
                                     <select class="form-control" aria-label="Default select example"
-                                    ngModel name="paymentType">
+                                    formControlName="paymentType">
                                         <option selected>Choose an Option</option>
                                         <option value="Cash">Cash</option>
                                         <option value="Cheque">Cheque</option>
@@ -59,7 +59,7 @@
                                 <div class=" form-group">
                                     <label> Processed By </label>
                                     <input class=" form-control" placeholder="" type="text" value=""
-                                    ngModel name="processedBy" />
+                                    formControlName="processedBy" />
                                 </div>
                             </div>                          
                         </div>
@@ -68,7 +68,7 @@
                                 <div class=" form-group">
                                     <label> Income Category </label>
                                     <select class="form-control" aria-label="Default select example"
-                                    ngModel name="incomeCategory">
+                                    formControlName="incomeCategory">
                                         <option selected>Choose an Option</option>
                                         <option value="Loads">Loads</option>
                                         <option value="Sales">Sales</option>
@@ -89,7 +89,7 @@
                                 <div class=" form-group">
                                     <label> Select a Vehicle </label>
                                     <select class="form-control" aria-label="Default select example"
-                                    ngModel name="vehicle">
+                                    formControlName="vehicle">
                                         <option selected>Select Vehicle</option>
                                         <option value="Vehicle 1">Vehicle 1</option>
                                         <option value="Vehicle 2">Vehicle 2</option>
@@ -103,7 +103,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class=" row">
+                        <!-- <div class=" row">
                             <div class=" col-md-6 pr-md-1">
                                 <div class=" form-group">
                                     <div>
@@ -116,18 +116,19 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class=" row">
                             <div class=" col-md-12">
                                 <div class=" form-group">
                                     <label>Note</label>
-                                    <textarea class=" form-control" cols="" placeholder="" rows="" value=""
-                                    ngModel name="note"></textarea>
+                                    <textarea class=" form-control" cols="" placeholder="" rows=""
+                                    formControlName="note"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="row float-right">
-                            <button type="submit" class="btn btn-danger">Add Income</button>
+                            <button type="submit" class="btn btn-danger">{{isUpdate ? 'Update' : 'Add'}}
+                                Income</button>
                         </div>
                     </form>
                 </div>

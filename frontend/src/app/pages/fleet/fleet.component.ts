@@ -63,10 +63,11 @@ export class FleetComponent implements OnInit {
     });
   }
 
-  updateVehicle(vehicleID: any) {
+  async updateVehicle(vehicleID: any) {
+    const vehicleInfo = await this.apiService.getVehicleInfo(vehicleID);
     this.matDialog.open(AddvehicleComponent, {
       data: {
-        id: vehicleID,
+        vehicleInfo: vehicleInfo,
         isUpdate: true
       },
     }).afterClosed().subscribe((data) => {

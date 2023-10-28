@@ -6,10 +6,6 @@ import { Routes, RouterModule } from "@angular/router";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { Login } from "./layouts/login-signup/login.component";
-import { Signup } from "./layouts/login-signup/signup.component";
-import { W9FormComponent } from "./pages/w9-form/w9-form.component";
-import { W4FormComponent } from "./pages/w4-form/w4-form.component";
-
 
 const routes: Routes = [
   {
@@ -37,18 +33,18 @@ const routes: Routes = [
     ]
   },
   { path: "login", component: Login, },
-  { path: "signup", component: Signup, },
-  {
-    path: "w9-form",
-    component: W9FormComponent,
-  },
-  {
-    path: "w4-form",
-    component: W4FormComponent,
-  },
+  // { path: "signup", component: Signup, },
+  // {
+  //   path: "w9-form",
+  //   component: W9FormComponent,
+  // },
+  // {
+  //   path: "w4-form",
+  //   component: W4FormComponent,
+  // },
   {
     path: "**",
-    redirectTo: "dashboard",
+    redirectTo: "login",
     pathMatch: "full"
   },
 ];

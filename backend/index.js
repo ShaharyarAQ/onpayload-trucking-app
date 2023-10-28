@@ -2,8 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+// Include models
 const db = require("./models");
 
+// Include controllers
 const users = require('./controllers/users.controller');
 const clients = require('./controllers/clients.controller');
 const vehicles = require('./controllers/vehicles.controller');
@@ -11,13 +13,15 @@ const incomes = require('./controllers/incomes.controller');
 const expenses = require('./controllers/expenses.controller');
 const ifta = require('./controllers/ifta.controller');
 const loads = require('./controllers/loads.controller');
-const members = require('./controllers/members.controller')
+const members = require('./controllers/members.controller');
 
+// Server start port
 const port = 3000;
 
 // Body parser to accept JSON data
 app.use(bodyParser.json());
 
+// Initialize all models
 db.sequelize.sync()
   .then(() => {
     console.log("Synced db.");
@@ -34,14 +38,15 @@ app.use((req, res, next) => {
   next();
 });
 
+// Users
 app.get('/getUsers', users.getUsers);
+app.post('/auth/login', users.login);
 
-
-
-app.post('/addLoad', loads.addLoad);
-app.get('/getLoads', loads.getLoads);
-app.get('/getLoadInfo', loads.getLoadInfo);
-app.delete('/deleteLoad', loads.deleteLoad);
+// loads
+app.get('/loads/', loads.get);
+app.get('/loads/:id', loads.getOne);
+app.post('/loads/', loads.add);
+app.delete('/loads/:id', loads.delete);
 
 app.post('/addIncome', incomes.addIncome);
 app.get('/getIncomes', incomes.getIncomes);
@@ -68,8 +73,9 @@ app.post('/addClient', clients.addClient);
 
 app.post('/addIfta', ifta.addIfta);
 
-
 // Start server
 app.listen(port, () => {
-  console.log(`\n======\nExample app listening on port ${port}\n======\n`);
+  console.log(`\n=================`);
+  console.log(`Example app listening on port ${port}`);
+  console.log(`=================\n`);
 })

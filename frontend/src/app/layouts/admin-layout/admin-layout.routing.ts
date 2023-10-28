@@ -10,8 +10,6 @@ import { FleetComponent } from "src/app/pages/fleet/fleet.component";
 import { ExpensesComponent } from "../../pages/expenses/expenses.component";
 import { IFTAComponent } from "src/app/pages/IFTA/IFTA.component";
 import { ReportsComponent } from "../../pages/reports/reports.component";
-import { SubscribeComponent } from "src/app/pages/subscribe/subscribe.component";
-// import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 export const AdminLayoutRoutes: Routes = [
   { path: "dashboard", component: DashboardComponent },
@@ -24,8 +22,4 @@ export const AdminLayoutRoutes: Routes = [
   { path: "fleet", component: FleetComponent },
   { path: "IFTA", component: IFTAComponent },
   { path: "reports", component: ReportsComponent },
-  { path: "subscribe", component: SubscribeComponent },
-
-
-  // { path: "rtl", component: RtlComponent }
 ];

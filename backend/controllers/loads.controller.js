@@ -1,29 +1,26 @@
 const db = require("../models");
 const LoadModel = db.load;
 
-
-
-exports.getLoads = async (req, res) => {
-    const loads = await LoadModel.findAll();
-    try{
+exports.get = async (req, res) => {
+    try {
+        const loads = await LoadModel.findAll();
         return res.status(200).json(loads);
     }
     catch (error) {
-        return res.status(404).json({message: 'Unable to get loads data'});
+        return res.status(404).json({ message: 'Unable to get loads data' });
     }
 }
 
-exports.getLoadInfo = async (req, res) => {
-    const loadID = req.query.param;
+exports.getOne = async (req, res) => {
     try {
-        const loadInfo = await LoadModel.findOne({ where: { id: loadID } });
+        const loadInfo = await LoadModel.findOne({ where: { id: req.params.id } });
         return res.status(200).json(loadInfo);
     } catch (error) {
-        return res.status(404).json({message: 'Unable to get load information'});
+        return res.status(404).json({ message: 'Unable to get load information' });
     }
 
 }
-exports.addLoad = async (req, res) => {
+exports.add = async (req, res) => {
     try {
         await LoadModel.create({ ...req.body });
         return res.status(200).json({ message: 'done' });
@@ -32,14 +29,12 @@ exports.addLoad = async (req, res) => {
     }
 }
 
-exports.deleteLoad = async (req, res) => {
-    const loadID = req.query.param;
+exports.delete = async (req, res) => {
     try {
-        const response = await LoadModel.destroy({ where: { id: loadID } });
+        const response = await LoadModel.destroy({ where: { id: req.params.id } });
         return res.status(200).json(response);
     } catch (error) {
         console.log('Error')
-        return res.status(404).json({message: 'Unable to delete load'});
+        return res.status(404).json({ message: 'Unable to delete load' });
     }
-    
 }

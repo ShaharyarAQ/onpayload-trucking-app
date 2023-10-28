@@ -128,6 +128,21 @@ export class IncomeComponent implements OnInit {
     });
   }
 
+  async updateIncome(incomeID: any) {
+    const incomeInfo = await this.apiService.getIncomeInfo(incomeID);
+    this.matDialog.open(AddincomeComponent, {
+      data: {
+        incomeInfo: incomeInfo,
+        isUpdate: true
+      },
+    }).afterClosed().subscribe((data) => {
+      if (data) {
+        console.log('In add income function', data);
+        this.getAllIncomes();
+      }
+    });
+  }
+
   async deleteIncome(incomeID: any){
     const data: any = await this.apiService.deleteIncome(incomeID);
     this.snackBar.open("Income Deleted");

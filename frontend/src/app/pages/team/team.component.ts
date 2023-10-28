@@ -70,6 +70,21 @@ export class TeamComponent implements OnInit {
     });
   }
 
+  async updateMember(memberID: any) {
+    const MemberInfo = await this.apiService.getMemberInfo(memberID);
+    this.matDialog.open(OnboardComponent, {
+      data: {
+        memberInfo: MemberInfo,
+        isUpdate: true
+      },
+    }).afterClosed().subscribe((data) => {
+      if (data) {
+        console.log('In add member function', data);
+        this.getAllMembers();
+      }
+    });
+  }
+
   async deleteMember(memberID: any) {
     const data: any = await this.apiService.deleteMember(memberID);
     this.snackBar.open("Team Member Deleted");

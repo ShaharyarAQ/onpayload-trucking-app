@@ -67,7 +67,7 @@
               <i class=" tim-icons icon-alert-circle-exc" (click)="expenseInfo(expense.id)" ></i>
             </button>
             <button type="button" rel="tooltip" class="btn btn-link btn-icon btn-sm">
-              <i class=" tim-icons icon-pencil"></i>
+              <i class=" tim-icons icon-pencil" (click)="updateExpense(expense.id)"></i>
             </button>
             <button type="button" rel="tooltip" class="btn btn-link btn-icon btn-sm">
               <i class=" tim-icons icon-trash-simple" (click)="deleteDialog(expense.id)"></i>

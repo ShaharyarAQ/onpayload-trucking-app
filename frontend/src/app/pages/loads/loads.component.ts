@@ -5,20 +5,23 @@ import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
 
-import { ApiService } from "src/services/api.service";
+import { LoadService } from "src/services/load.service";
 
 import { AddloadComponent } from "src/app/dialogs/addload/addload.component";
 import { LoadinfoComponent } from "src/app/dialogs/loadinfo/loadinfo.component";
 import { DeleteComponent } from "src/app/dialogs/delete/delete.component";
+
 
 @Component({
   selector: "app-loads",
   templateUrl: "loads.component.html"
 })
 export class LoadsComponent implements OnInit {
-  constructor(private matDialog: MatDialog,
-    private apiService: ApiService,
-    private snackBar: MatSnackBar) { }
+  constructor(
+    private matDialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private loadService: LoadService
+  ) { }
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -33,7 +36,7 @@ export class LoadsComponent implements OnInit {
   }
 
   async getAllLoads() {
-    const loads: any = await this.apiService.getLoads();
+    const loads: any = await this.loadService.get();
     this.allLoads = loads;
     this.dataSource = new MatTableDataSource(this.allLoads);
     this.dataSource.sort = this.sort;
@@ -57,8 +60,23 @@ export class LoadsComponent implements OnInit {
     });
   }
 
-  async deleteLoad(loadID: any){
-    const data: any = await this.apiService.deleteLoad(loadID);
+  async updateLoad(loadID: any) {
+    const loadInfo = await this.loadService.get(loadID);
+    this.matDialog.open(AddloadComponent, {
+      data: {
+        loadInfo: loadInfo,
+        isUpdate: true
+      },
+    }).afterClosed().subscribe((data) => {
+      if (data) {
+        console.log('In add load function', data);
+        this.getAllLoads();
+      }
+    });
+  }
+
+  async deleteLoad(loadID: any) {
+    const data: any = await this.loadService.delete(loadID);
     this.snackBar.open("Load Deleted");
     this.getAllLoads();
   }
@@ -67,17 +85,17 @@ export class LoadsComponent implements OnInit {
     const dialogRef = this.matDialog.open(DeleteComponent);
     dialogRef.afterClosed().subscribe(async result => {
       if (result) {
-        if(result === 'yes'){
+        if (result === 'yes') {
           this.deleteLoad(loadID);
         }
-        else{
+        else {
           console.log('The Result was no');
         }
       }
     })
   }
 
-  applyFilter(text: string){
+  applyFilter(text: string) {
     this.dataSource.filter = text.trim().toLowerCase();
   }
 

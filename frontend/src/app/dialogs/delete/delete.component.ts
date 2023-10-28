@@ -8,10 +8,10 @@ import { ApiService } from "src/services/api.service";
   templateUrl: "delete.component.html"
 })
 export class DeleteComponent {
-  constructor(public dialogRef: MatDialogRef<DeleteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private apiService: ApiService) { }
-
+  constructor(
+    public dialogRef: MatDialogRef<DeleteComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
 
   onButtonClicked(buttonId: string) {
     this.dialogRef.close(buttonId);

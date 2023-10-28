@@ -12,12 +12,7 @@ export class VehicleinfoComponent implements OnInit {
 
   vehicleInfo: any;
 
-  ngOnInit() {
-    this.getVehicleInfo(this.data.id)
+  async ngOnInit() {
+    this.vehicleInfo = await this.apiService.getVehicleInfo(this.data.id);
   }
-
-  async getVehicleInfo(id) {
-    this.vehicleInfo = await this.apiService.getVehicleInfo(id);
-  }
-
 }

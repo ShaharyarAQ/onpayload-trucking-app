@@ -121,6 +121,21 @@ export class ExpensesComponent implements OnInit {
     });
   }
 
+  async updateExpense(expenseID: any) {
+    const expenseInfo = await this.apiService.getExpenseInfo(expenseID);
+    this.matDialog.open(AddexpenceComponent, {
+      data: {
+        expenseInfo: expenseInfo,
+        isUpdate: true
+      },
+    }).afterClosed().subscribe((data) => {
+      if (data) {
+        console.log('In add expense function', data);
+        this.getAllExpenses();
+      }
+    });
+  }
+
   async deleteExpense(expenseID: any){
     const data: any = await this.apiService.deleteExpense(expenseID);
     this.snackBar.open("Expense Deleted");

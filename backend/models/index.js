@@ -27,6 +27,8 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+db.user = require("./User")(sequelize, Sequelize);
+db.session = require("./Session")(sequelize, Sequelize);
 db.client = require("./Client")(sequelize, Sequelize);
 db.vehicle = require("./Vehicle")(sequelize, Sequelize);
 db.income = require("./Income")(sequelize, Sequelize);
