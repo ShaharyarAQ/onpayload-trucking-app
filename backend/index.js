@@ -44,6 +44,7 @@ app.post('/auth/login', users.login);
 
 // loads
 app.get('/loads/', loads.get);
+app.get('/loads/hashed/:hashedId', loads.getHashed);
 app.get('/loads/:id', loads.getOne);
 app.post('/loads/', loads.add);
 app.delete('/loads/:id', loads.delete);

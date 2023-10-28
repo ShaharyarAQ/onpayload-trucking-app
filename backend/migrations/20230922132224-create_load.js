@@ -9,6 +9,15 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      hashedId: {
+        allowNull: false,
+        type: Sequelize.STRING(32)
+      },
+      status: {
+        allowNull: false,
+        default: { current: 'Pending', timeline: [] },
+        type: Sequelize.JSON
+    },
       date: {
         type: Sequelize.DATE,
         allowNull: false

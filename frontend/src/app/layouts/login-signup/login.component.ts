@@ -30,9 +30,10 @@ export class Login implements OnInit {
   }
 
   async login() {
-    const data: any = await this.authService.login(this.form.value);
-    console.log(data);
-    // this.router.navigate(['/dashboard']);
+    // const data: any = await this.authService.login(this.form.value);
+    // console.log(data);
+    // Set JWT token in session then navigate
+    this.router.navigate(['/dashboard']);
   }
 
   // async onSubmit() {

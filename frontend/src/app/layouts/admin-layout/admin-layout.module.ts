@@ -8,12 +8,12 @@ import { ApiService } from "src/services/api.service";
 
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatSortModule} from '@angular/material/sort'
-import {MatTableModule} from '@angular/material/table'
-import {MatPaginatorModule} from "@angular/material/paginator";
-import {MatStepperModule} from "@angular/material/stepper";
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSortModule } from '@angular/material/sort'
+import { MatTableModule } from '@angular/material/table'
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -45,8 +45,6 @@ import { AddpayslipComponent } from "src/app/dialogs/addpayslip/addpayslip.compo
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-
-
 @NgModule({
   imports: [
     CommonModule,
@@ -86,7 +84,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     AddvehicleComponent,
     AddIFTAComponent,
     OnboardComponent,
-    AddpayslipComponent
+    AddpayslipComponent,
     // RtlComponent
   ],
 
@@ -94,12 +92,12 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     ApiService,
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
-        duration: 1500, 
-        verticalPosition: 'top',
+        duration: 3500,
+        verticalPosition: 'bottom',
         horizontalPosition: 'center',
         panelClass: ["snackbar"],
       }
-    },
+    }
   ]
 })
 export class AdminLayoutModule { }

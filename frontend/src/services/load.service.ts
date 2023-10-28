@@ -16,6 +16,10 @@ export class LoadService {
             this.http.get(`${this.url}`).toPromise();
     }
 
+    async getHashed(id: string) {
+        return this.http.get(`${this.url}/hashed/${id}`).toPromise();
+    }
+
     async add(load: any) {
         return this.http.post(`${this.url}`, load).toPromise();
     }

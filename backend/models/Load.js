@@ -6,6 +6,15 @@ module.exports = function (sequelize, DataTypes) {
             primaryKey: true,
             type: DataTypes.INTEGER
         },
+        hashedId: {
+            allowNull: false,
+            type: DataTypes.STRING(32)
+        },
+        status: {
+            allowNull: false,
+            defaultValue: { current: 'Pending', timeline: [] },
+            type: DataTypes.JSON
+        },
         date: {
             type: DataTypes.DATE,
             allowNull: true

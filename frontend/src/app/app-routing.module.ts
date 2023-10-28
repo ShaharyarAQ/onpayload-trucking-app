@@ -6,6 +6,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { Login } from "./layouts/login-signup/login.component";
+import { LoadStatusComponent } from "./pages/load-status/load-status.component";
 
 const routes: Routes = [
   {
@@ -33,15 +34,10 @@ const routes: Routes = [
     ]
   },
   { path: "login", component: Login, },
-  // { path: "signup", component: Signup, },
-  // {
-  //   path: "w9-form",
-  //   component: W9FormComponent,
-  // },
-  // {
-  //   path: "w4-form",
-  //   component: W4FormComponent,
-  // },
+  {
+    path: 'load-status',
+    component: LoadStatusComponent,
+  },
   {
     path: "**",
     redirectTo: "login",

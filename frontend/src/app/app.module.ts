@@ -15,8 +15,7 @@ import { Signup } from "./layouts/login-signup/signup.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/components.module";
 import { APP_BASE_HREF } from "@angular/common";
-
-
+import { LoadStatusComponent } from "./pages/load-status/load-status.component";
 
 @NgModule({
   imports: [
@@ -30,7 +29,14 @@ import { APP_BASE_HREF } from "@angular/common";
     ReactiveFormsModule,
     ToastrModule.forRoot()
   ],
-  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, Login, Signup],
+  declarations: [
+    AppComponent,
+    AdminLayoutComponent,
+    AuthLayoutComponent,
+    Login,
+    Signup,
+    LoadStatusComponent
+  ],
   providers: [ApiService, { provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent]
 })

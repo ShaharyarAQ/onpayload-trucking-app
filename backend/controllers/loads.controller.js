@@ -1,3 +1,5 @@
+var randomstring = require("randomstring");
+
 const db = require("../models");
 const LoadModel = db.load;
 
@@ -11,6 +13,15 @@ exports.get = async (req, res) => {
     }
 }
 
+exports.getHashed = async (req, res) => {
+    try {
+        const loadInfo = await LoadModel.findOne({ where: { hashedId: req.params.hashedId } });
+        return res.status(200).json(loadInfo);
+    } catch (error) {
+        return res.status(404).json({ message: 'Unable to get load information' });
+    }
+}
+
 exports.getOne = async (req, res) => {
     try {
         const loadInfo = await LoadModel.findOne({ where: { id: req.params.id } });
@@ -18,11 +29,17 @@ exports.getOne = async (req, res) => {
     } catch (error) {
         return res.status(404).json({ message: 'Unable to get load information' });
     }
-
 }
+
 exports.add = async (req, res) => {
     try {
-        await LoadModel.create({ ...req.body });
+        const hashedId = randomstring.generate({
+            length: 32,
+            charset: 'hex',
+            readable: true,
+            capitalization: 'uppercase'
+        });
+        await LoadModel.create({ ...req.body, hashedId });
         return res.status(200).json({ message: 'done' });
     } catch (error) {
         return res.status(500).json({ message: 'error', data: error.message });
