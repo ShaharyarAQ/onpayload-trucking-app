@@ -2,8 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+// load enviromental variables
+require('dotenv').config();
+console.log(process.env) // remove this after you've confirmed it is working
+
 // Include models
 const db = require("./models");
+
+//Testing
+
+const { sendDefaultEmail } = require("./services/email");
 
 // Include controllers
 const users = require('./controllers/users.controller');
@@ -18,7 +26,7 @@ const members = require('./controllers/members.controller');
 const { validateSession } = require('./middlewares/session');
 
 // Server start port
-const port = 3000;
+const port = process.env.APP_PORT || 3000;
 
 // Body parser to accept JSON data
 app.use(bodyParser.json());
@@ -49,7 +57,7 @@ app.get('/loads/', loads.get);
 app.get('/loads/hashed/:hashedId', loads.getHashed);
 app.get('/loads/:id', loads.getOne);
 app.post('/loads/', loads.add);
-app.put('/loads/', loads.update );
+app.put('/loads/', loads.update);
 app.delete('/loads/:id', loads.delete);
 
 
@@ -91,15 +99,15 @@ app.post('/addClient', clients.addClient);
 
 
 // ifta
-app.get('/iftas/', iftas.get );
-app.get('/iftas/:id', iftas.getOne  );
-app.post('/iftas/', iftas.add );
-app.put('/iftas/', iftas.update );
-app.delete('/iftas/:id', iftas.delete );
+app.get('/iftas/', iftas.get);
+app.get('/iftas/:id', iftas.getOne);
+app.post('/iftas/', iftas.add);
+app.put('/iftas/', iftas.update);
+app.delete('/iftas/:id', iftas.delete);
 
 // Start server
 app.listen(port, () => {
   console.log(`\n=================`);
   console.log(`Example app listening on port ${port}`);
   console.log(`=================\n`);
-})
+});
