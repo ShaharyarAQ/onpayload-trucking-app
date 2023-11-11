@@ -11,7 +11,7 @@
               (click)="onboardMember()">Onboard Member</button>
           </div>
           <div class="col-md-4 col-sm-8 float-right">
-            <input type="text" class="form-control" placeholder="Search">
+            <input (keyup)="applyFilter($event.target.value)" type="text" class="form-control" placeholder="Search">
           </div>
         </div>
         <br />
@@ -20,25 +20,25 @@
             <mat-table [dataSource]="dataSource" matSort>
 
               <ng-container matColumnDef="name">
-                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
                 <mat-cell *matCellDef="let member"> {{member.firstName}}&nbsp;{{member.lastName}} </mat-cell>
               </ng-container>
 
 
               <ng-container matColumnDef="joiningDate">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Joining Date </mat-header-cell>
-                <mat-cell *matCellDef="let member"> {{member.date}} </mat-cell>
+                <mat-cell *matCellDef="let member"> {{member.date | date}} </mat-cell>
               </ng-container>
 
 
               <ng-container matColumnDef="licenseId">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> License ID </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> License ID </mat-header-cell>
                 <mat-cell *matCellDef="let member"> {{member.licenseId}} </mat-cell>
               </ng-container>
 
 
               <ng-container matColumnDef="jobTitle">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Job title </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> Job title </mat-header-cell>
                 <mat-cell *matCellDef="let member"> {{member.jobTitle}} </mat-cell>
               </ng-container>
 
@@ -53,7 +53,7 @@
               </ng-container>
 
               <ng-container matColumnDef="emailAddress">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Email Address </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> Email Address </mat-header-cell>
                 <mat-cell *matCellDef="let member"> {{member.emailAddress}} </mat-cell>
               </ng-container>
 

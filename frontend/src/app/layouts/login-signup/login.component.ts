@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router"
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from "src/services/auth.service";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: "app-login",
@@ -15,7 +16,8 @@ export class Login implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -29,11 +31,20 @@ export class Login implements OnInit {
     return this.form.controls;
   }
 
+
   async login() {
-    // const data: any = await this.authService.login(this.form.value);
-    // console.log(data);
-    // Set JWT token in session then navigate
-    this.router.navigate(['/dashboard']);
+    const data: any = await this.authService.login(this.form.value);
+    console.log(data);
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data.userId);
+      this.snackBar.open('Welcome');
+      this.router.navigate(['/dashboard']);
+    }
+     else {
+      this.snackBar.open('Wrong Credentials!');
+      localStorage.clear();
+    }
   }
 
   // async onSubmit() {

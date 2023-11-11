@@ -7,10 +7,11 @@ import { LoadService } from "src/services/load.service";
   templateUrl: "loadinfo.component.html"
 })
 export class LoadinfoComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-    private loadService: LoadService) { }
 
   loadInfo: any;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+    private loadService: LoadService) { }
 
   async ngOnInit() {
     this.loadInfo = await this.loadService.get(this.data.id);

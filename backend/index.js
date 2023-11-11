@@ -11,9 +11,11 @@ const clients = require('./controllers/clients.controller');
 const vehicles = require('./controllers/vehicles.controller');
 const incomes = require('./controllers/incomes.controller');
 const expenses = require('./controllers/expenses.controller');
-const ifta = require('./controllers/ifta.controller');
+const iftas = require('./controllers/ifta.controller');
 const loads = require('./controllers/loads.controller');
 const members = require('./controllers/members.controller');
+
+const { validateSession } = require('./middlewares/session');
 
 // Server start port
 const port = 3000;
@@ -47,32 +49,53 @@ app.get('/loads/', loads.get);
 app.get('/loads/hashed/:hashedId', loads.getHashed);
 app.get('/loads/:id', loads.getOne);
 app.post('/loads/', loads.add);
+app.put('/loads/', loads.update );
 app.delete('/loads/:id', loads.delete);
 
+
+// incomes
 app.post('/addIncome', incomes.addIncome);
 app.get('/getIncomes', incomes.getIncomes);
 app.get('/getIncomeInfo', incomes.getIncomeInfo);
+app.put('/updateIncome', incomes.updateIncome);
 app.delete('/deleteIncome', incomes.deleteIncome);
 
+
+// expenses
 app.post('/addExpense', expenses.addExpense);
 app.get('/getExpenses', expenses.getExpenses);
 app.get('/getExpenseInfo', expenses.getExpenseInfo);
+app.put('/updateExpense', expenses.updateExpense);
 app.delete('/deleteExpense', expenses.deleteExpense);
 
+
+// members
 app.post('/addMember', members.addMember);
 app.get('/getMembers', members.getMembers);
 app.get('/getMemberInfo', members.getMemberInfo);
+app.put('/updateMember', members.updatemember);
 app.delete('/deleteMember', members.deleteMember);
 
+
+// vehicles
 app.post('/addVehicle', vehicles.addVehicle);
 app.get('/getVehicles', vehicles.getVehicles);
 app.get('/getVehicleInfo', vehicles.getVehicleInfo);
+app.put('/updateVehicle', vehicles.updateVehicle);
 app.delete('/deleteVehicle', vehicles.deleteVehicle);
 
+
+// clients
 app.get('/getClients', clients.getClients);
 app.post('/addClient', clients.addClient);
 
-app.post('/addIfta', ifta.addIfta);
+
+// ifta
+app.get('/iftas/', iftas.get );
+app.get('/iftas/:id', iftas.getOne  );
+app.post('/iftas/', iftas.add );
+app.put('/iftas/', iftas.update );
+app.delete('/iftas/:id', iftas.delete );
 
 // Start server
 app.listen(port, () => {

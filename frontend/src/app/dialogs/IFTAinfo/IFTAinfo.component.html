@@ -7,81 +7,76 @@
                         <td class="left">
                             <strong>Trip Date</strong>
                         </td>
-                        <td class="right">08/29/23</td>
+                        <td class="right">{{iftaInfo?.date}}</td>
                     </tr>
                     <tr>
                         <td class="left">
-                            <strong>Vehilce</strong>
+                            <strong>Jurisdiction</strong>
                         </td>
-                        <td class="right">743</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <strong>State</strong>
-                        </td>
-                        <td class="right">NC</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <strong>Odometer Start</strong>
-                        </td>
-                        <td class="right">0</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <strong>Odometer End</strong>
-                        </td>
-                        <td class="right">600</td>
+                        <td class="right">{{iftaInfo?.jurisdiction}}</td>
                     </tr>
                     <tr>
                         <td class="left">
                             <strong>Trip Type</strong>
                         </td>
-                        <td class="right">Loaded</td>
+                        <td class="right">{{iftaInfo?.tripType}}</td>
                     </tr>
+                    <tr>
+                        <td class="left">
+                            <strong>Vehicle</strong>
+                        </td>
+                        <td class="right">{{iftaInfo?.vehicle}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <strong>Odometer Start</strong>
+                        </td>
+                        <td class="right">{{iftaInfo?.odometerStart}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <strong>Odometer End</strong>
+                        </td>
+                        <td class="right">{{iftaInfo?.odometerEnd}}</td>
+                    </tr>
+                    
                     <tr>
                         <td class="left">
                             <strong>Distance</strong>
                         </td>
-                        <td class="right">600</td>
+                        <td class="right">{{iftaInfo?.distance}}</td>
                     </tr>
                     <tr>
                         <td class="left">
-                            <strong>Non Taxible Distance</strong>
+                            <strong>Non Taxable Distance</strong>
                         </td>
-                        <td class="right">0</td>
+                        <td class="right">{{iftaInfo?.nonTaxableDistance}}</td>
                     </tr>
                     <tr>
                         <td class="left">
                             <strong>Toll Miles</strong>
                         </td>
-                        <td class="right">0</td>
+                        <td class="right">{{iftaInfo?.tollMiles}}</td>
                     </tr>
                     <tr>
                         <td class="left">
                             <strong>Non Toll Miles</strong>
                         </td>
-                        <td class="right">0</td>
+                        <td class="right">{{iftaInfo?.nonTollMiles}}</td>
                     </tr>
                     
                     <tr>
                         <td class="left">
                             <strong>Fuel Purchased</strong>
                         </td>
-                        <td class="right">230</td>
+                        <td class="right">{{iftaInfo?.fuelPurchased}}</td>
                     </tr>
                     <tr>
                         <td class="left">
                             <strong>Note</strong>
                         </td>
-                        <td class="right"></td>
+                        <td class="right">{{iftaInfo?.note}}</td>
                     </tr>
-                    <tr>
-                        <td class="left">
-                            <strong>Attachment</strong>
-                        </td>
-                        <td class="right"></td>
-                    </tr> 
                 </tbody>
             </table>
         </div>

@@ -3,23 +3,23 @@
         <div class=" col-md-12">
             <div class=" card">
                 <div class=" card-header">
-                    <h3 class=" title">Add Record</h3>
+                    <h3 class=" title">{{isUpdate ? 'Update' : 'Add'}} Ifta Record</h3>
                 </div>
                 <div class=" card-body">
-                    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+                    <form (ngSubmit)="onSubmit()" [formGroup]="form">
                         <div class=" row">
                             <div class=" col-md-4 pr-md-1">
                                 <div class=" form-group">
                                     <label>Trip Date</label>
-                                    <input class=" form-control" placeholder="" type="date" value=""
-                                    ngModel name="date">
+                                    <input class=" form-control" placeholder="" type="date"
+                                    formControlName = "date">
                                 </div>
                             </div>
                             <div class=" col-md-4 px-md-1">
                                 <div class=" form-group">
                                     <label> Jurisdiction </label>
                                     <select class="form-control" aria-label="Default select example"
-                                    ngModel name="Jurisdiction">
+                                    formControlName = "jurisdiction">
                                         <option selected>Choose an Option</option>
                                         <option value="AL">AL</option>
                                         <option value="AK">AK</option>
@@ -81,7 +81,7 @@
                                 <div class=" form-group">
                                     <label> Trip Type </label>
                                     <select class="form-control" aria-label="Default select example"
-                                    ngModel name="tripType">
+                                    formControlName="tripType">
                                         <option selected>Choose an Option</option>
                                         <option value="Loaded">Loaded</option>
                                         <option value="Not Loaded">Not Loaded</option>
@@ -94,7 +94,7 @@
                                 <div class=" form-group">
                                     <label> Select a Vehicle </label>
                                     <select class="form-control" aria-label="Default select example"
-                                    ngModel name="vehicle">
+                                    formControlName="vehicle">
                                         <option selected>Choose an Option</option>
                                         <option value="Vehicle 1">Vehicle 1</option>
                                         <option value="Vehicle 2">Vehicle 2</option>
@@ -108,29 +108,29 @@
                             <div class=" col-md-3 pr-md-1">
                                 <div class=" form-group">
                                     <label> Odometer Start </label>
-                                    <input class=" form-control" placeholder="" type="number" value=""
-                                    ngModel name="odometerStart">
+                                    <input class=" form-control" placeholder="" type="text"
+                                    formControlName="odometerStart">
                                 </div>
                             </div>
                             <div class=" col-md-3 px-md-1">
                                 <div class=" form-group">
                                     <label> Odometer End </label>
-                                    <input class=" form-control" placeholder="" type="number" value=""
-                                    ngModel name="odometerEnd">
+                                    <input class=" form-control" placeholder="" type="text"
+                                    formControlName="odometerEnd">
                                 </div>
                             </div>
                             <div class=" col-md-3 px-md-1">
                                 <div class=" form-group">
                                     <label> Distance (miles)</label>
-                                    <input class=" form-control" placeholder="" type="number" value=""
-                                    ngModel name="distance">
+                                    <input class=" form-control" placeholder="" type="text"
+                                    formControlName="distance">
                                 </div>
                             </div>
                             <div class=" col-md-3 pl-md-1">
                                 <div class=" form-group">
                                     <label> Non Taxable Distance </label>
-                                    <input class=" form-control" placeholder="" type="number" value=""
-                                    ngModel name="nonTaxableDistance">
+                                    <input class=" form-control" placeholder="" type="text"
+                                    formControlName="nonTaxableDistance">
                                 </div>
                             </div>
                         </div>
@@ -138,22 +138,22 @@
                             <div class=" col-md-4 pr-md-1">
                                 <div class=" form-group">
                                     <label> Toll Miles </label>
-                                    <input class=" form-control" placeholder="" type="number" value=""
-                                    ngModel name="tollMiles">
+                                    <input class=" form-control" placeholder="" type="text"
+                                    formControlName="tollMiles">
                                 </div>
                             </div>
                             <div class=" col-md-4 px-md-1">
                                 <div class=" form-group">
                                     <label> Non Toll Miles </label>
-                                    <input class=" form-control" placeholder="" type="number" value=""
-                                    ngModel name="nonTollMiles">
+                                    <input class=" form-control" placeholder="" type="text"
+                                    formControlName="nonTollMiles">
                                 </div>
                             </div>
                             <div class=" col-md-4 pl-md-1">
                                 <div class=" form-group">
                                     <label> Fuel Purchased (gallons) </label>
-                                    <input class=" form-control" placeholder="" type="number" value=""
-                                    ngModel name="fuelPurchased">
+                                    <input class=" form-control" placeholder="" type="text"
+                                    formControlName="fuelPurchased">
                                 </div>
                             </div>
                         </div>
@@ -161,13 +161,15 @@
                             <div class=" col-md-12">
                                 <div class=" form-group">
                                     <label>Note</label>
-                                    <textarea class=" form-control" cols="" placeholder="" rows="" value=""
-                                    ngModel name="note"></textarea>
+                                    <textarea class=" form-control" cols="" placeholder="" rows=""
+                                    formControlName="note"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="row float-right">
-                            <button type="submit" class="btn btn-danger">Add Record</button>
+                            <button type="submit" class="btn btn-danger"
+                            [disabled]="!form.valid">{{isUpdate ? 'Update' : 'Add'}}
+                            Ifta Record</button>
                         </div>
                     </form>
                 </div>

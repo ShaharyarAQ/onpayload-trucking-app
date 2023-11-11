@@ -9,12 +9,15 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      tripDate: {
+      date: {
         type: Sequelize.DATE,
         allowNull: false
       },
       jurisdiction: {
-        type: Sequelize.STRING(3),
+        type: Sequelize.ENUM(['AL', 'AK', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
+        'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT',
+        'NC', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT',
+        'VT', 'VA', 'WA', 'WI', 'WV', 'WY', 'Can', 'Mex']),
         allowNull: false
       },
       tripType:{
@@ -27,11 +30,11 @@ module.exports = {
       },
       odometerStart: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
       },
       odometerEnd: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
       },
       distance: {
         type: Sequelize.INTEGER,
@@ -39,7 +42,7 @@ module.exports = {
       },
       nonTaxableDistance: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
       },
       tollMiles: {
         type: Sequelize.INTEGER,
@@ -47,7 +50,7 @@ module.exports = {
       },
       nonTollMiles: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
       },
       fuelPurchased: {
         type: Sequelize.INTEGER,

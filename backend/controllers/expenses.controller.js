@@ -17,12 +17,25 @@ exports.getExpenseInfo = async (req, res) => {
     const expenseID = req.query.param;
     try {
         const expenseInfo = await ExpenseModel.findOne({ where: { id: expenseID } });
+        expenseInfo.dataValues.date = expenseInfo.dataValues.date.toISOString().split('T')[0];
         return res.status(200).json(expenseInfo);
     } catch (error) {
         return res.status(404).json({message: 'Unable to get expense information'});
     }
 
 }
+
+exports.updateExpense = async (req, res) => {
+    try {
+        const response = await ExpenseModel.update(req.body, { where: { id: req.query.param } });
+        return res.status(200).json(response);
+    }
+    catch (error) {
+        console.log('Error')
+        return res.status(404).json({ message: 'Unable to update expense' });
+    }
+}
+
 exports.addExpense = async (req, res) => {
     try {
         await ExpenseModel.create({ ...req.body });

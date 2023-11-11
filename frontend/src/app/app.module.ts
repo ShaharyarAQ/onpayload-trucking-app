@@ -16,6 +16,9 @@ import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/components.module";
 import { APP_BASE_HREF } from "@angular/common";
 import { LoadStatusComponent } from "./pages/load-status/load-status.component";
+import { employeePayslipComponent } from "./pages/payslips/employee/employeePayslip.component";
+import { independentContractorPayslipComponent } from "./pages/payslips/independent-contractor/independent-contractorPayslip.component";
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from "@angular/material/snack-bar";
 
 @NgModule({
   imports: [
@@ -35,9 +38,20 @@ import { LoadStatusComponent } from "./pages/load-status/load-status.component";
     AuthLayoutComponent,
     Login,
     Signup,
-    LoadStatusComponent
+    LoadStatusComponent,
+    employeePayslipComponent,
+    independentContractorPayslipComponent
   ],
-  providers: [ApiService, { provide: APP_BASE_HREF, useValue: '/' }],
+  providers: [ApiService,
+    { provide: APP_BASE_HREF, useValue: '/' },
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
+        duration: 3500,
+        verticalPosition: 'bottom',
+        horizontalPosition: 'center',
+        panelClass: ["snackbar"],
+      }
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

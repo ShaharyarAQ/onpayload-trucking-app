@@ -21,5 +21,5 @@ export const AdminLayoutRoutes: Routes = [
   { path: "invoices", component: InvoicesComponent },
   { path: "fleet", component: FleetComponent },
   { path: "IFTA", component: IFTAComponent },
-  { path: "reports", component: ReportsComponent },
+  // { path: "reports", component: ReportsComponent },
 ];

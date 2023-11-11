@@ -5,27 +5,20 @@ import { environment } from "./../environments/environment";
 @Injectable({
     providedIn: `root`,
 })
-export class LoadService {
-    url = environment.appUrl + '/loads';
+export class IftaService {
+    url = environment.appUrl + '/iftas';
 
     constructor(private http: HttpClient) { }
 
     async get(id: string = null) {
-        // const token: any = localStorage.getItem('token');
-        // const headers = new HttpHeaders().set('token', token);
         return id ?
             this.http.get(`${this.url}/${id}`).toPromise() :
-            this.http.get(`${this.url}`,).toPromise();
+            this.http.get(`${this.url}`).toPromise();
     }
 
-    async getHashed(id: string) {
-        return this.http.get(`${this.url}/hashed/${id}`).toPromise();
+    async add(ifta: any) {
+        return this.http.post(`${this.url}`, ifta).toPromise();
     }
-
-    async add(load: any) {
-        return this.http.post(`${this.url}`, load).toPromise();
-    }
-
     async update(id: any, data: any) {
         const url_ = `${this.url}/?param=${id}`;
         return this.http.put(`${url_}`, data ).toPromise()

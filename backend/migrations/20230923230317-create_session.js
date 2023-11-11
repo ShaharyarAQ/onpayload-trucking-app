@@ -5,26 +5,16 @@ module.exports = {
     await queryInterface.createTable('Sessions', {
       id: {
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user: {
-        type: Sequelize.INTEGER,
+      token: {
+        type: Sequelize.STRING(500),
         allowNull: false
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      deletedAt: {
-        allowNull: true,
-        type: Sequelize.DATE
-      }
     });
   },
   async down(queryInterface, Sequelize) {

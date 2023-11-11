@@ -3,10 +3,14 @@ import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
 import { Routes, RouterModule } from "@angular/router";
 
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { Login } from "./layouts/login-signup/login.component";
 import { LoadStatusComponent } from "./pages/load-status/load-status.component";
+import { employeePayslipComponent } from "./pages/payslips/employee/employeePayslip.component";
+import { independentContractorPayslipComponent } from "./pages/payslips/independent-contractor/independent-contractorPayslip.component";
 
 const routes: Routes = [
   {
@@ -39,6 +43,18 @@ const routes: Routes = [
     component: LoadStatusComponent,
   },
   {
+    path: 'employee-payslip',
+    component: employeePayslipComponent,
+  },
+  {
+    path: 'independent-contractor-payslip',
+    component: independentContractorPayslipComponent,
+  },
+  {
+    path: 'load-status',
+    component: LoadStatusComponent,
+  },
+  {
     path: "**",
     redirectTo: "login",
     pathMatch: "full"
@@ -49,6 +65,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     BrowserModule,
+    MatSnackBarModule,
     RouterModule.forRoot(routes, {
       useHash: false
     })

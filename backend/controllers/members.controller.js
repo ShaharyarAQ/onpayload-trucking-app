@@ -16,11 +16,22 @@ exports.getMemberInfo = async (req, res) => {
     const memberID = req.query.param;
     try {
         const memberInfo = await MemberModel.findOne({ where: { id: memberID } });
+        memberInfo.dataValues.date = memberInfo.dataValues.date.toISOString().split('T')[0];
         return res.status(200).json(memberInfo);
     } catch (error) {
         return res.status(404).json({message: 'Unable to get member information'});
     }
+}
 
+exports.updatemember = async (req, res) => {
+    try {
+        const response = await MemberModel.update(req.body, { where: { id: req.query.param } });
+        return res.status(200).json(response);
+    }
+    catch (error) {
+        console.log('Error')
+        return res.status(404).json({ message: 'Unable to update member' });
+    }
 }
 
 exports.addMember = async (req, res) => {

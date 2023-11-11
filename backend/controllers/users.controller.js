@@ -1,5 +1,5 @@
-// import { comparePassword } from '../services/crypto';
 const db = require('../models');
+const jwt = require('jsonwebtoken');
 
 const cryptoo = require('../services/crypto');
 const UserModel = db.user;
@@ -16,18 +16,35 @@ exports.login = async (req, res) => {
     const loadedUser = await UserModel.findOne({ where: { emailAddress: email } });
     if (!loadedUser) {
         console.log('User does not exist');
-        const error = new Error('A user with this email could not be found');
-        error.statusCode = 401;
-        throw error;
+        return res.status(201).json({ message: 'User does not exist!' })
+
     }
-    const check = await cryptoo.comparePassword(password, loadedUser.password);
-    if (!check) {
-        console.log('Wrong password');
-        const error = new Error('Wrong password');
-        error.statusCode = 401;
-        throw error;
+    try {
+        const check = await cryptoo.comparePassword(password, loadedUser.password);
+        if (!check) {
+            console.log('Wrong password');
+            return res.status(201).json({ message: 'Wrong Password!' })
+        }
+        console.log('Details are Correct!');
+        const token = jwt.sign({
+            email: loadedUser.email,
+            userID: loadedUser.id
+        }, 'secretprivatekey',
+            { expiresIn: '1h' }
+        );
+        await SessionModel.create({
+            token: token,
+            id: loadedUser.id,
+        });
+        res.status(200).json({
+            token: token,
+            userId: loadedUser.id,
+        })
     }
-    console.log('details are correct');
+    catch{
+        res.status(201).json({ message: 'Wrong Credentials' })
+    }
+    
 }
 
 // exports.loginUser = async (req, res, next) => {
