@@ -4,14 +4,9 @@ const app = express();
 
 // load enviromental variables
 require('dotenv').config();
-console.log(process.env) // remove this after you've confirmed it is working
 
 // Include models
 const db = require("./models");
-
-//Testing
-
-const { sendDefaultEmail } = require("./services/email");
 
 // Include controllers
 const users = require('./controllers/users.controller');
@@ -40,6 +35,17 @@ db.sequelize.sync()
     console.log("Failed to sync db: " + err.message);
   });
 
+// Relations
+db.load.belongsTo(db.member, {as: "driver", foreignKey: "driverId"});
+db.load.belongsTo(db.member, {as: "dispatcher", foreignKey: "dispatcherId"});
+db.load.belongsTo(db.client, {as: "client", foreignKey: "clientId"});
+db.load.belongsTo(db.vehicle, {as: "vehicle", foreignKey: "vehicleId"});
+db.load.belongsTo(db.vehicle, {as: "trailer", foreignKey: "trailerId"});
+
+
+db.expense.belongsTo(db.vehicle, {as: "vehicle", foreignKey: "vehicleId"});
+db.income.belongsTo(db.vehicle, {as: "vehicle", foreignKey: "vehicleId"});
+db.vehicle.belongsTo(db.member, {as: "driver", foreignKey: "driverId"});
 // Allow CORS
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -48,18 +54,9 @@ app.use((req, res, next) => {
   next();
 });
 
-// Users
+// users
 app.get('/getUsers', users.getUsers);
 app.post('/auth/login', users.login);
-
-// loads
-app.get('/loads/', loads.get);
-app.get('/loads/hashed/:hashedId', loads.getHashed);
-app.get('/loads/:id', loads.getOne);
-app.post('/loads/', loads.add);
-app.put('/loads/', loads.update);
-app.delete('/loads/:id', loads.delete);
-
 
 // incomes
 app.post('/addIncome', incomes.addIncome);
@@ -68,14 +65,12 @@ app.get('/getIncomeInfo', incomes.getIncomeInfo);
 app.put('/updateIncome', incomes.updateIncome);
 app.delete('/deleteIncome', incomes.deleteIncome);
 
-
 // expenses
 app.post('/addExpense', expenses.addExpense);
 app.get('/getExpenses', expenses.getExpenses);
 app.get('/getExpenseInfo', expenses.getExpenseInfo);
 app.put('/updateExpense', expenses.updateExpense);
 app.delete('/deleteExpense', expenses.deleteExpense);
-
 
 // members
 app.post('/addMember', members.addMember);
@@ -84,7 +79,6 @@ app.get('/getMemberInfo', members.getMemberInfo);
 app.put('/updateMember', members.updatemember);
 app.delete('/deleteMember', members.deleteMember);
 
-
 // vehicles
 app.post('/addVehicle', vehicles.addVehicle);
 app.get('/getVehicles', vehicles.getVehicles);
@@ -92,11 +86,19 @@ app.get('/getVehicleInfo', vehicles.getVehicleInfo);
 app.put('/updateVehicle', vehicles.updateVehicle);
 app.delete('/deleteVehicle', vehicles.deleteVehicle);
 
-
 // clients
 app.get('/getClients', clients.getClients);
 app.post('/addClient', clients.addClient);
 
+// loads
+app.get('/loads/', loads.get);
+app.get('/loads/hashed/:hashedId', loads.getHashed);
+app.get('/loads/:id', loads.getOne);
+app.post('/loads/', loads.add);
+app.put('/loads/', loads.update);
+app.delete('/loads/:id', loads.delete);
+app.patch('/loads/:hashedId', loads.updateWithHashedId);
+app.get('/loads/start-load/:hashedId', loads.startLoad);
 
 // ifta
 app.get('/iftas/', iftas.get);

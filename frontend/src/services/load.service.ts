@@ -28,7 +28,17 @@ export class LoadService {
 
     async update(id: any, data: any) {
         const url_ = `${this.url}/?param=${id}`;
-        return this.http.put(`${url_}`, data ).toPromise()
+        return this.http.put(`${url_}`, data).toPromise()
+    }
+
+    async updateWithHashedId(hashedId: string, data: any) {
+        const url_ = `${this.url}/${hashedId}`;
+        return this.http.patch(`${url_}`, data).toPromise()
+    }
+
+    async startLoad(hashedId: string) {
+        const url_ = `${this.url}/start-load/${hashedId}`;
+        return this.http.get(`${url_}`).toPromise()
     }
 
     async delete(id: string = null) {

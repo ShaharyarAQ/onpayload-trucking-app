@@ -18,6 +18,8 @@ export class AddexpenceComponent implements OnInit {
   form: FormGroup;
   expenseInfo: any;
   isUpdate: boolean;
+  vehicles: any = [];
+  loader: boolean = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -28,7 +30,14 @@ export class AddexpenceComponent implements OnInit {
     private snackBar: MatSnackBar
   ) { }
 
-  ngOnInit() {
+  async expenseData() {
+    this.loader = false;
+    this.vehicles = await this.apiService.getVehicles();
+    this.loader = true;
+  }
+
+  async ngOnInit() {
+    await this.expenseData();
     this.isUpdate = this.data?.isUpdate;
     this.form = this.formBuilder.group({
       date: [this.isUpdate ? this.data.expenseInfo.date : '', Validators.required],
@@ -38,7 +47,7 @@ export class AddexpenceComponent implements OnInit {
       paymentType: [this.isUpdate ? this.data.expenseInfo.paymentType : ''],
       payee: [this.isUpdate ? this.data.expenseInfo.payee : ''],
       expenseCategory: [this.isUpdate ? this.data.expenseInfo.expenseCategory : '', Validators.required],
-      vehicle: [this.isUpdate ? this.data.expenseInfo.vehicle : ''],
+      vehicleId: [this.isUpdate ? this.data.expenseInfo.vehicleId : ''],
       note: [this.isUpdate ? this.data.expenseInfo.note : ''],
     });
   }

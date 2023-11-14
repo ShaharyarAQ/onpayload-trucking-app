@@ -3,7 +3,11 @@ const VehicleModel = db.vehicle;
 
 
 exports.getVehicles = async (req, res) => {
-    const vehicles = await VehicleModel.findAll();
+    const vehicles = await VehicleModel.findAll({
+        include: [
+            { model: db.member, as: 'driver' },
+        ]
+    });
     try {
         return res.status(200).json(vehicles);
     }
@@ -15,7 +19,12 @@ exports.getVehicles = async (req, res) => {
 exports.getVehicleInfo = async (req, res) => {
     const vehicleID = req.query.param;
     try {
-        const vehicleInfo = await VehicleModel.findOne({ where: { id: vehicleID } });
+        const vehicleInfo = await VehicleModel.findOne({
+            where: { id: vehicleID },
+            include: [
+                { model: db.member, as: 'driver' },
+            ]
+        });
         return res.status(200).json(vehicleInfo);
     } catch (error) {
         return res.status(404).json({ message: 'Unable to get vehicle information' });

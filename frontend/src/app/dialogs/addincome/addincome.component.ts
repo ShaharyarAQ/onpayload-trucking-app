@@ -19,6 +19,8 @@ export class AddincomeComponent implements OnInit {
   form: FormGroup;
   vehicleInfo: any;
   isUpdate: boolean;
+  vehicles: any = [];
+  loader: boolean = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -29,8 +31,15 @@ export class AddincomeComponent implements OnInit {
     private snackBar: MatSnackBar
   ) { }
 
+  async incomeData() {
+    this.loader = false;
+    this.vehicles = await this.apiService.getVehicles();
+    this.loader = true;
+  }
 
-  ngOnInit() {
+
+  async ngOnInit() {
+    await this.incomeData();
     this.isUpdate = this.data?.isUpdate;
     this.form = this.formBuilder.group({
       date: [this.isUpdate ? this.data.incomeInfo.date : '', Validators.required],
@@ -40,7 +49,7 @@ export class AddincomeComponent implements OnInit {
       paymentType: [this.isUpdate ? this.data.incomeInfo.paymentType : ''],
       processedBy: [this.isUpdate ? this.data.incomeInfo.processedBy : ''],
       incomeCategory: [this.isUpdate ? this.data.incomeInfo.incomeCategory : '', Validators.required],
-      vehicle: [this.isUpdate ? this.data.incomeInfo.vehicle : ''],
+      vehicleId: [this.isUpdate ? this.data.incomeInfo.vehicleId : ''],
       note: [this.isUpdate ? this.data.incomeInfo.note : ''],
     });
   }

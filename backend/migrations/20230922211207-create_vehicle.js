@@ -42,9 +42,13 @@ module.exports = {
           'Truck Tractor', 'Pickup Truck', 'Box Truck', 'Trailer', 'Cargo Van','Other']),
         allowNull: true
       },
-      assignedDriver: {
-        type: Sequelize.STRING(80),
-        allowNull: true
+      driverId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Members',
+          key: 'id'
+        },
       },
       note: {
         type: Sequelize.STRING(500),

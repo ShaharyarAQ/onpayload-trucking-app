@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 
 const { DEFAULT_HTML_TEMPLATE } = require("../mail/template");
+const { LOAD_TEMPLATE } = require('../mail/load');
 
 // create reusable transporter object using the default SMTP transport
 const transporter = nodemailer.createTransport({
@@ -41,4 +42,20 @@ const sendDefaultEmail = async (to, subject, message) => {
     });
 }
 
-module.exports = { sendDefaultEmail }
+// Send default template email function
+const sendLoadEmail = async (to, subject, body) => {
+    const options = {
+        from: "OnPayload <shaharyarahmad233@gmail.com>", // sender address
+        to,
+        subject,
+        html: LOAD_TEMPLATE(body),
+    }
+
+    // send mail with defined transport object and mail options
+    SENDMAIL(options, (info) => {
+        console.log("Email sent successfully");
+        console.log("MESSAGE ID: ", info.messageId);
+    });
+}
+
+module.exports = { sendDefaultEmail, sendLoadEmail }

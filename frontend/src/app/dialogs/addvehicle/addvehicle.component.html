@@ -1,4 +1,13 @@
-<div class=" content">
+<div *ngIf="!loader" class=" content">
+    <div class=" row">
+        <div class=" col-md-12 text-center">
+            Loading...
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="loader" class=" content">
     <div class=" row">
         <div class=" col-md-12">
             <div class=" card">
@@ -72,11 +81,11 @@
                             <div class=" col-md-4 px-md-1">
                                 <div class=" form-group">
                                     <label> Assigned Driver </label>
-                                    <select class="form-control" aria-label="Default select example"
-                                        formControlName="assignedDriver">
-                                        <option selected>Choose an Option</option>
-                                        <option value="Driver 1">Driver 1</option>
-                                        <option value="Driver 1">Driver 1</option>
+                                    <select class="form-control" formControlName="driverId">
+                                        <option disabled="true">Please select one</option>
+                                        <option *ngFor="let driver of drivers;" value="{{driver.id}}">{{driver.firstName
+                                            + " " +
+                                            driver.lastName}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -111,8 +120,8 @@
                             </div>
                         </div>
                         <div class="row float-right">
-                            <button type="submit" class="btn btn-danger"
-                            [disabled]="!form.valid">{{isUpdate ? 'Update' : 'Add'}}
+                            <button type="submit" class="btn btn-danger" [disabled]="!form.valid">{{isUpdate ? 'Update'
+                                : 'Add'}}
                                 Vehicle</button>
                         </div>
                     </form>

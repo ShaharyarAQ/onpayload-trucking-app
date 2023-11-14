@@ -93,6 +93,9 @@ export class ApiService {
     }
 
     // Clients
+    async getClients() {
+        return this.http.get(`${this.appUrl}/getClients`).toPromise();
+    }
     async addClient(data: any) {
         return this.http.post(`${this.appUrl}/addClient`, data).toPromise();
     }

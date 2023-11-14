@@ -5,7 +5,7 @@ const DEFAULT_HTML_TEMPLATE = (text) => {
       <html>
         <head>
           <meta charset="utf-8">
-          <title>NodeMailer Email Template</title>
+          <title>OnPayload</title>
           <style>
             .container {
               width: 100%;
@@ -40,13 +40,13 @@ const DEFAULT_HTML_TEMPLATE = (text) => {
           <div class="container">
             <div class="email">
               <div class="email-header">
-                <h1>EMAIL HEADER</h1>
+                <h1>OnPayLoad</h1>
               </div>
               <div class="email-body">
                 <p>${text}</p>
               </div>
               <div class="email-footer">
-                <p>EMAIL FOOTER</p>
+                <p>Copyright @ OnPayload 2023</p>
               </div>
             </div>
           </div>

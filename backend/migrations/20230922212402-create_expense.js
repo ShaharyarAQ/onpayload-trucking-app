@@ -37,19 +37,23 @@ module.exports = {
       },
       expenseCategory: {
         type: Sequelize.ENUM([
-          'Accessorial Deduction','Accessorial Expense', 'Accident Deductible', 'Escrow-Maintenance',
-          'Factoring Charges','Fax','Insurance-Health', 'Insurance-Trailer', 'Insurance-Truck',
-          'Internet Fees', 'Lodging','Lumper Fee','Maintenence', 'Meals','Miscellaneous',
-          'Office Supplies','Oil and/or Additives','Other Expense','Parking','Payments',
-          'Payroll Taxes','Permits','Physical (DOT)','Processing Fees','Reimbursement','Rent',
-          'Repair','Safety Clothing','Scale Tickets','Showers','STAX','Tax Paid','Toll',
-          'Trailer Lease Payment','Truck Lease Payment','Truck Parts','Truck Repair and Maintenence',
-          'Truck Tires','Truck Washes','Utilities','Wages']),
+          'Accessorial Deduction', 'Accessorial Expense', 'Accident Deductible', 'Escrow-Maintenance',
+          'Factoring Charges', 'Fax', 'Insurance-Health', 'Insurance-Trailer', 'Insurance-Truck',
+          'Internet Fees', 'Lodging', 'Lumper Fee', 'Maintenence', 'Meals', 'Miscellaneous',
+          'Office Supplies', 'Oil and/or Additives', 'Other Expense', 'Parking', 'Payments',
+          'Payroll Taxes', 'Permits', 'Physical (DOT)', 'Processing Fees', 'Reimbursement', 'Rent',
+          'Repair', 'Safety Clothing', 'Scale Tickets', 'Showers', 'STAX', 'Tax Paid', 'Toll',
+          'Trailer Lease Payment', 'Truck Lease Payment', 'Truck Parts', 'Truck Repair and Maintenence',
+          'Truck Tires', 'Truck Washes', 'Utilities', 'Wages']),
         allowNull: false
       },
-      vehicle: {
-        type: Sequelize.STRING(40),
-        allowNull: false
+      vehicleId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Vehicles',
+          key: 'id'
+        },
       },
       note: {
         type: Sequelize.STRING(500),

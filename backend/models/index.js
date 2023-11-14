@@ -37,4 +37,7 @@ db.ifta = require("./Ifta")(sequelize, Sequelize);
 db.load = require("./Load")(sequelize, Sequelize);
 db.member = require("./Member")(sequelize, Sequelize);
 
+// Relations
+
+
 module.exports = db;

@@ -1,65 +1,69 @@
-module.exports = (sequelize, Sequelize) => {
+module.exports = (sequelize, DataTypes) => {
   const Income = sequelize.define("Income", {
     id: {
       allowNull: true,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     date: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       allowNull: true
     },
     reference: {
-      type: Sequelize.STRING(80),
+      type: DataTypes.STRING(80),
       allowNull: true
     },
     payer: {
-      type: Sequelize.STRING(80),
+      type: DataTypes.STRING(80),
       allowNull: true
     },
     amount: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: true
     },
     paymentType: {
-      type: Sequelize.ENUM([
+      type: DataTypes.ENUM([
         'Cash', 'Cheque', 'Credit Card', 'EFT', 'ACH',
         'Direct Deposit', 'Zelle', 'Other']),
       allowNull: true
     },
     processedBy: {
-      type: Sequelize.STRING(80),
+      type: DataTypes.STRING(80),
       allowNull: true
     },
     incomeCategory: {
-      type: Sequelize.ENUM([
+      type: DataTypes.ENUM([
         'Loads', 'Sales', 'Rental', 'Dispatch', 'Leasing',
         'Consulting', 'Accesorial', 'Advance', 'Fuel Surcharge',
         'Reimbursement', 'Repair Services', 'Other']),
       allowNull: true
     },
-    vehicle: {
-      type: Sequelize.STRING(40),
-      allowNull: true
+    vehicleId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'Vehicles',
+        key: 'id'
+      },
     },
     note: {
-      type: Sequelize.STRING(500),
+      type: DataTypes.STRING(500),
       allowNull: true
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       defaultValue: sequelize.literal('NOW()')
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       defaultValue: sequelize.literal('NOW()')
     },
     deletedAt: {
       allowNull: true,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     }
   });
   return Income;

@@ -9,12 +9,15 @@ import { LoadService } from "src/services/load.service";
 export class LoadinfoComponent {
 
   loadInfo: any;
+  timeline;
+  loader: boolean = false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private loadService: LoadService) { }
 
   async ngOnInit() {
     this.loadInfo = await this.loadService.get(this.data.id);
+    this.timeline = this.loadInfo.status.timeline;
   }
 
 }

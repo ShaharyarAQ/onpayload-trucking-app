@@ -4,23 +4,32 @@ const ExpenseModel = db.expense;
 
 
 exports.getExpenses = async (req, res) => {
-    const expenses = await ExpenseModel.findAll();
-    try{
+    const expenses = await ExpenseModel.findAll({
+        include: [
+            { model: db.vehicle, as: 'vehicle' },
+        ]
+    });
+    try {
         return res.status(200).json(expenses);
     }
     catch (error) {
-        return res.status(404).json({message: 'Unable to get expenses data'});
+        return res.status(404).json({ message: 'Unable to get expenses data' });
     }
 }
 
 exports.getExpenseInfo = async (req, res) => {
     const expenseID = req.query.param;
     try {
-        const expenseInfo = await ExpenseModel.findOne({ where: { id: expenseID } });
+        const expenseInfo = await ExpenseModel.findOne({
+            where: { id: expenseID },
+            include: [
+                { model: db.vehicle, as: 'vehicle' },
+            ]
+        });
         expenseInfo.dataValues.date = expenseInfo.dataValues.date.toISOString().split('T')[0];
         return res.status(200).json(expenseInfo);
     } catch (error) {
-        return res.status(404).json({message: 'Unable to get expense information'});
+        return res.status(404).json({ message: 'Unable to get expense information' });
     }
 
 }
@@ -52,7 +61,7 @@ exports.deleteExpense = async (req, res) => {
         return res.status(200).json(response);
     } catch (error) {
         console.log('Error')
-        return res.status(404).json({message: 'Unable to delete expense'});
+        return res.status(404).json({ message: 'Unable to delete expense' });
     }
-    
+
 }

@@ -1,4 +1,13 @@
-<div class="content">
+<div *ngIf="!loader" class=" content">
+    <div class=" row">
+        <div class=" col-md-12 text-center">
+            Loading...
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="loader" class="content">
     <div class=" row">
         <div>
             <div class=" card">
@@ -118,11 +127,11 @@
                             <div class=" col-md-6 px-md-1">
                                 <div class=" form-group">
                                     <label> Select a Vehicle </label>
-                                    <select class="form-control" aria-label="Default select example"
-                                    formControlName="vehicle">
-                                        <option selected>Select Vehicle</option>
-                                        <option value="Vehicle 1">Vehicle 1</option>
-                                        <option value="Vehicle 2">Vehicle 2</option>
+                                    <select class="form-control" formControlName="vehicleId">
+                                        <option disabled="true">Please select one</option>
+                                        <option *ngFor="let vehicle of vehicles;" value="{{vehicle.id}}">
+                                            {{vehicle.plateNumber + " " +
+                                            vehicle.vehicleType}}</option>
                                     </select>
                                 </div>
                             </div>

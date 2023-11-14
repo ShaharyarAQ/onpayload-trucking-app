@@ -9,6 +9,7 @@ import { LoadService } from "src/services/load.service";
 
 import { AddloadComponent } from "src/app/dialogs/addload/addload.component";
 import { LoadinfoComponent } from "src/app/dialogs/loadinfo/loadinfo.component";
+import { StartLoadComponent } from "src/app/dialogs/startLoad/start-load.component";
 import { DeleteComponent } from "src/app/dialogs/delete/delete.component";
 
 
@@ -50,6 +51,20 @@ export class LoadsComponent implements OnInit {
         this.getAllLoads();
       }
     });
+  }
+
+  startLoad(loadID: any) {
+    const dialogRef = this.matDialog.open(StartLoadComponent);
+    dialogRef.afterClosed().subscribe(async result => {
+      if (result) {
+        if (result === 'yes') {
+          const response: any = await this.loadService.startLoad(loadID);
+        }
+        else {
+          console.log('The Result was no');
+        }
+      }
+    })
   }
 
   loadInfo(loadID: any) {

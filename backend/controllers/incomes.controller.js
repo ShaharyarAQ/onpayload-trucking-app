@@ -4,23 +4,32 @@ const IncomeModel = db.income;
 
 
 exports.getIncomes = async (req, res) => {
-    const incomes = await IncomeModel.findAll();
-    try{
+    const incomes = await IncomeModel.findAll({
+        include: [
+            { model: db.vehicle, as: 'vehicle' },
+        ]
+    });
+    try {
         return res.status(200).json(incomes);
     }
     catch (error) {
-        return res.status(404).json({message: 'Unable to get incomes data'});
+        return res.status(404).json({ message: 'Unable to get incomes data' });
     }
 }
 
 exports.getIncomeInfo = async (req, res) => {
     const incomeID = req.query.param;
     try {
-        const incomeInfo = await IncomeModel.findOne({ where: { id: incomeID } });
+        const incomeInfo = await IncomeModel.findOne({
+            where: { id: incomeID },
+            include: [
+                { model: db.vehicle, as: 'vehicle' },
+            ]
+        });
         incomeInfo.dataValues.date = incomeInfo.dataValues.date.toISOString().split('T')[0];
         return res.status(200).json(incomeInfo);
     } catch (error) {
-        return res.status(404).json({message: 'Unable to get income information'});
+        return res.status(404).json({ message: 'Unable to get income information' });
     }
 }
 
@@ -53,7 +62,7 @@ exports.deleteIncome = async (req, res) => {
         return res.status(200).json(response);
     } catch (error) {
         console.log('Error')
-        return res.status(404).json({message: 'Unable to delete income'});
+        return res.status(404).json({ message: 'Unable to delete income' });
     }
-    
+
 }

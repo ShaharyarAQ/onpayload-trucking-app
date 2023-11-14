@@ -46,7 +46,7 @@
 
         <ng-container matColumnDef="assignedDriver">
           <mat-header-cell *matHeaderCellDef> Assigned Driver </mat-header-cell>
-          <mat-cell *matCellDef="let vehicle"> {{vehicle.assignedDriver}} </mat-cell>
+          <mat-cell *matCellDef="let vehicle"> {{vehicle.driver.firstName + ' ' + vehicle.driver.lastName}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="actions">

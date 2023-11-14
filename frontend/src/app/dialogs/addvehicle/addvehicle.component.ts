@@ -14,6 +14,9 @@ export class AddvehicleComponent implements OnInit {
   form: FormGroup;
   vehicleInfo: any;
   isUpdate: boolean;
+  drivers: any = [];
+  members: any = [];
+  loader: boolean = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -23,7 +26,18 @@ export class AddvehicleComponent implements OnInit {
     private snackBar: MatSnackBar
   ) { }
 
-  ngOnInit() {
+
+  async vehicleData() {
+    this.loader = false;
+    this.members = await this.apiService.getMembers();
+    this.members.forEach(member => {
+      if (member.jobTitle === 'Driver') this.drivers.push(member)
+    });
+    this.loader = true;
+  }
+
+  async ngOnInit() {
+    await this.vehicleData();
     this.isUpdate = this.data?.isUpdate;
     this.form = this.formBuilder.group({
       unitNumber: [this.isUpdate ? this.data.vehicleInfo.unitNumber : '', Validators.required],
@@ -34,7 +48,7 @@ export class AddvehicleComponent implements OnInit {
       plateNumber: [this.isUpdate ? this.data.vehicleInfo.plateNumber : '', Validators.required],
       vin: [this.isUpdate ? this.data.vehicleInfo.vin : '', Validators.required],
       vehicleType: [this.isUpdate ? this.data.vehicleInfo.vehicleType : '', Validators.required],
-      assignedDriver: [this.isUpdate ? this.data.vehicleInfo.assignedDriver : ''],
+      driverId: [this.isUpdate ? this.data.vehicleInfo.driverId : ''],
       note: [this.isUpdate ? this.data.vehicleInfo.note : ''],
     });
   }

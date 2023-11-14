@@ -39,12 +39,16 @@ module.exports = {
         type: Sequelize.ENUM([
           'Loads', 'Sales', 'Rental', 'Dispatch', 'Leasing',
           'Consulting', 'Accesorial', 'Advance', 'Fuel Surcharge',
-          'Reimbursement','Repair Services','Other']),
+          'Reimbursement', 'Repair Services', 'Other']),
         allowNull: false
       },
-      vehicle: {
-        type: Sequelize.STRING(40),
-        allowNull: false
+      vehicleId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Vehicles',
+          key: 'id'
+        },
       },
       note: {
         type: Sequelize.STRING(500),

@@ -15,16 +15,20 @@ module.exports = {
       },
       status: {
         allowNull: false,
-        default: { current: 'Pending', timeline: [] },
+        default: { current: 'Created', timeline: [] },
         type: Sequelize.JSON
-    },
+      },
       date: {
         type: Sequelize.DATE,
         allowNull: false
       },
-      driver: {
-        type: Sequelize.STRING(80),
-        allowNull: false
+      driverId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Members',
+          key: 'id'
+        },
       },
       pay: {
         type: Sequelize.INTEGER,
@@ -66,21 +70,37 @@ module.exports = {
           'Other']),
         allowNull: false
       },
-      dispatchName: {
-        type: Sequelize.STRING(80),
-        allowNull: false
-      },
-      vehicle: {
-        type: Sequelize.STRING(40),
-        allowNull: false
-      },
-      trailerNumber: {
+      dispatcherId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'Members',
+          key: 'id'
+        },
       },
-      client: {
-        type: Sequelize.STRING(80),
-        allowNull: false
+      vehicleId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Vehicles',
+          key: 'id'
+        },
+      },
+      trailerId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Vehicles',
+          key: 'id'
+        },
+      },
+      clientId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Clients',
+          key: 'id'
+        },
       },
       note: {
         type: Sequelize.STRING(500),
