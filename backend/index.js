@@ -17,6 +17,7 @@ const expenses = require('./controllers/expenses.controller');
 const iftas = require('./controllers/ifta.controller');
 const loads = require('./controllers/loads.controller');
 const members = require('./controllers/members.controller');
+const weather = require('./controllers/weather.controller');
 
 const { validateSession } = require('./middlewares/session');
 
@@ -106,6 +107,9 @@ app.get('/iftas/:id', iftas.getOne);
 app.post('/iftas/', iftas.add);
 app.put('/iftas/', iftas.update);
 app.delete('/iftas/:id', iftas.delete);
+
+// weather data
+app.get('/weather/:location', weather.getWeather);
 
 // Start server
 app.listen(port, () => {
