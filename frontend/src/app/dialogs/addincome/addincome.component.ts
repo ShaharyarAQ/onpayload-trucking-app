@@ -75,6 +75,9 @@ export class AddincomeComponent implements OnInit {
     }
     else {
       if (this.form.valid) {
+        if (this.form.value.vehicleId === '') {
+          this.form.value.vehicleId = this.form.value.vehicleId = null;
+        }
         const data: any = await this.apiService.addIncome(this.form.value);
         this.dialogRef.close(true);
       } else {

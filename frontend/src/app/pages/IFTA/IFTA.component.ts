@@ -6,13 +6,14 @@ import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
 
 import { IftaService } from "src/services/ifta.service";
+import { ApiService } from "src/services/api.service";
 
 import { AddIFTAComponent } from "src/app/dialogs/addIFTA/addIFTA.component";
 import { DeleteComponent } from "src/app/dialogs/delete/delete.component";
 import { IFTAinfoComponent } from "src/app/dialogs/IFTAinfo/IFTAinfo.component";
 import { IFTAsummaryComponent } from "src/app/dialogs/IFTAsummary/IFTAsummary.component";
-
-
+import { EditBusinessDetails } from "src/app/dialogs/editBusinessDetails/editBusinessDetails.component";
+import { EditIftaSettings } from "src/app/dialogs/editIftaSettings/editIftaSettings.component";
 @Component({
   selector: "app-IFTA",
   templateUrl: "IFTA.component.html"
@@ -20,13 +21,16 @@ import { IFTAsummaryComponent } from "src/app/dialogs/IFTAsummary/IFTAsummary.co
 export class IFTAComponent implements OnInit {
   constructor(private matDialog: MatDialog,
     private snackBar: MatSnackBar,
-    private iftaService: IftaService
+    private iftaService: IftaService,
+    private apiService: ApiService
   ) { }
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   allIftas: any = [];
+  businessDetails: any;
+  iftaSettings: any;
   dataSource: any;
 
   displayedColumns: string[] = ['date', 'jurisdiction', 'vehicle', 'odometerStart', 'odometerEnd', 'distance', 'fuelPurchased', 'actions'];
@@ -34,6 +38,16 @@ export class IFTAComponent implements OnInit {
 
   async ngOnInit() {
     await this.getAlliftas();
+    await this.getBusinessDetails();
+    await this.getIftaSettings();
+  }
+
+  async getBusinessDetails() {
+    this.businessDetails = await this.apiService.getBusinessDetails();
+  }
+
+  async getIftaSettings() {
+    this.iftaSettings = await this.apiService.getIftaSettings();
   }
 
   async getAlliftas() {
@@ -72,6 +86,32 @@ export class IFTAComponent implements OnInit {
       if (data) {
         console.log('In add ifta function', data);
         this.getAlliftas();
+      }
+    });
+  }
+
+  async editBusinessDetails() {
+    this.matDialog.open(EditBusinessDetails, {
+      data: {
+        businessDetails: this.businessDetails,
+      },
+    }).afterClosed().subscribe((data) => {
+      if (data) {
+        console.log('In ifta', data);
+        this.getBusinessDetails();
+      }
+    });
+  }
+
+  async editIftaSettings() {
+    this.matDialog.open(EditIftaSettings, {
+      data: {
+        iftaSettings: this.iftaSettings,
+      },
+    }).afterClosed().subscribe((data) => {
+      if (data) {
+        console.log('In ifta', data);
+        this.getIftaSettings();
       }
     });
   }

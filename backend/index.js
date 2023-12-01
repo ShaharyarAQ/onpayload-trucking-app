@@ -2,7 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-// load enviromental variables
+// Upload middleware
+const upload = require('./services/uploads');
+
+// Load enviromental variables
 require('dotenv').config();
 
 // Include models
@@ -19,7 +22,10 @@ const loads = require('./controllers/loads.controller');
 const members = require('./controllers/members.controller');
 const weather = require('./controllers/weather.controller');
 
-const { validateSession } = require('./middlewares/session');
+const businessDetails = require('./controllers/business-details.controller');
+const iftaSettings = require('./controllers/ifta-settings.controller');
+
+// const { validateSession } = require('./middlewares/session');
 
 // Server start port
 const port = process.env.APP_PORT || 3000;
@@ -37,16 +43,16 @@ db.sequelize.sync()
   });
 
 // Relations
-db.load.belongsTo(db.member, {as: "driver", foreignKey: "driverId"});
-db.load.belongsTo(db.member, {as: "dispatcher", foreignKey: "dispatcherId"});
-db.load.belongsTo(db.client, {as: "client", foreignKey: "clientId"});
-db.load.belongsTo(db.vehicle, {as: "vehicle", foreignKey: "vehicleId"});
-db.load.belongsTo(db.vehicle, {as: "trailer", foreignKey: "trailerId"});
+db.load.belongsTo(db.member, { as: "driver", foreignKey: "driverId" });
+db.load.belongsTo(db.member, { as: "dispatcher", foreignKey: "dispatcherId" });
+db.load.belongsTo(db.client, { as: "client", foreignKey: "clientId" });
+db.load.belongsTo(db.vehicle, { as: "vehicle", foreignKey: "vehicleId" });
+db.load.belongsTo(db.vehicle, { as: "trailer", foreignKey: "trailerId" });
 
+db.expense.belongsTo(db.vehicle, { as: "vehicle", foreignKey: "vehicleId" });
+db.income.belongsTo(db.vehicle, { as: "vehicle", foreignKey: "vehicleId" });
+db.vehicle.belongsTo(db.member, { as: "driver", foreignKey: "driverId" });
 
-db.expense.belongsTo(db.vehicle, {as: "vehicle", foreignKey: "vehicleId"});
-db.income.belongsTo(db.vehicle, {as: "vehicle", foreignKey: "vehicleId"});
-db.vehicle.belongsTo(db.member, {as: "driver", foreignKey: "driverId"});
 // Allow CORS
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -74,7 +80,7 @@ app.put('/updateExpense', expenses.updateExpense);
 app.delete('/deleteExpense', expenses.deleteExpense);
 
 // members
-app.post('/addMember', members.addMember);
+app.post('/addMember', upload.single('file'), members.addMember);
 app.get('/getMembers', members.getMembers);
 app.get('/getMemberInfo', members.getMemberInfo);
 app.put('/updateMember', members.updatemember);
@@ -111,7 +117,18 @@ app.delete('/iftas/:id', iftas.delete);
 // weather data
 app.get('/weather/:location', weather.getWeather);
 
+// business details
+app.get('/getBusinessDetails', businessDetails.getBusinessDetails);
+app.put('/editBusinessDetails',businessDetails.editBusinessDetails);
+
+// ifta settings
+app.get('/getIftaSettings', iftaSettings.getIftaSettings);
+app.put('/editIftaSettings', iftaSettings.editIftaSettings);
+
+
+///////////////
 // Start server
+///////////////
 app.listen(port, () => {
   console.log(`\n=================`);
   console.log(`Example app listening on port ${port}`);

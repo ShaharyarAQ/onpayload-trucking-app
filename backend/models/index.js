@@ -37,6 +37,9 @@ db.ifta = require("./Ifta")(sequelize, Sequelize);
 db.load = require("./Load")(sequelize, Sequelize);
 db.member = require("./Member")(sequelize, Sequelize);
 
+db.businessDetails = require("./BusinessDetails")(sequelize, Sequelize);
+db.iftaSettings = require("./IftaSettings")(sequelize, Sequelize);
+
 // Relations
 
 

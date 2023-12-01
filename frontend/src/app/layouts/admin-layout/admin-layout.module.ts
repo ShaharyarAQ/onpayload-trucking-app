@@ -44,6 +44,9 @@ import { AddpayslipComponent } from "src/app/dialogs/addpayslip/addpayslip.compo
 
 import { LoadinfoComponent } from "src/app/dialogs/loadinfo/loadinfo.component";
 
+import { EditBusinessDetails } from "src/app/dialogs/editBusinessDetails/editBusinessDetails.component";
+import { EditIftaSettings } from "src/app/dialogs/editIftaSettings/editIftaSettings.component";
+
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -88,7 +91,11 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     OnboardComponent,
     AddpayslipComponent,
 
-    LoadinfoComponent
+    LoadinfoComponent,
+
+    EditBusinessDetails,
+    EditIftaSettings
+
     // RtlComponent
   ],
 

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders} from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "./../environments/environment";
 
@@ -9,7 +9,7 @@ export class ApiService {
     appUrl = environment.appUrl;
 
     constructor(private http: HttpClient) { }
-    
+
     // Incomes
     async addIncome(data: any) {
         return this.http.post(`${this.appUrl}/addIncome`, data).toPromise();
@@ -23,13 +23,13 @@ export class ApiService {
     }
     async updateIncome(id: any, data: any) {
         const url = `${this.appUrl}/updateIncome?param=${id}`;
-        return this.http.put(`${url}`, data ).toPromise()
+        return this.http.put(`${url}`, data).toPromise()
     }
     async deleteIncome(data: any) {
         const url = `${this.appUrl}/deleteIncome?param=${data}`;
         return this.http.delete(url).toPromise();
     }
-    
+
 
     // Expenses
     async addExpense(data: any) {
@@ -44,13 +44,13 @@ export class ApiService {
     }
     async updateExpense(id: any, data: any) {
         const url = `${this.appUrl}/updateExpense?param=${id}`;
-        return this.http.put(`${url}`, data ).toPromise()
+        return this.http.put(`${url}`, data).toPromise()
     }
     async deleteExpense(data: any) {
         const url = `${this.appUrl}/deleteExpense?param=${data}`;
         return this.http.delete(url).toPromise();
     }
-    
+
 
     // Members
     async addMember(data: any) {
@@ -65,7 +65,7 @@ export class ApiService {
     }
     async updateMember(id: any, data: any) {
         const url = `${this.appUrl}/updateMember?param=${id}`;
-        return this.http.put(`${url}`, data ).toPromise()
+        return this.http.put(`${url}`, data).toPromise()
     }
     async deleteMember(data: any) {
         const url = `${this.appUrl}/deleteMember?param=${data}`;
@@ -85,7 +85,7 @@ export class ApiService {
     }
     async updateVehicle(id: any, data: any) {
         const url = `${this.appUrl}/updateVehicle?param=${id}`;
-        return this.http.put(`${url}`, data ).toPromise()
+        return this.http.put(`${url}`, data).toPromise()
     }
     async deleteVehicle(data: any) {
         const url = `${this.appUrl}/deleteVehicle?param=${data}`;
@@ -98,5 +98,21 @@ export class ApiService {
     }
     async addClient(data: any) {
         return this.http.post(`${this.appUrl}/addClient`, data).toPromise();
+    }
+
+    // Business Details
+    async getBusinessDetails() {
+        return this.http.get(`${this.appUrl}/getBusinessDetails`).toPromise();
+    }
+    async editBusinessDetails(data: any) {
+        return this.http.put(`${this.appUrl}/editBusinessDetails`, data).toPromise();
+    }
+
+    // Ifta Settings
+    async getIftaSettings() {
+        return this.http.get(`${this.appUrl}/getIftaSettings`).toPromise();
+    }
+    async editIftaSettings(data: any) {
+        return this.http.put(`${this.appUrl}/editIftaSettings`, data).toPromise();
     }
 }

@@ -70,6 +70,9 @@ export class AddvehicleComponent implements OnInit {
     }
     else {
       if (this.form.valid) {
+        if (this.form.value.driverId === '') {
+          this.form.value.driverId = this.form.value.driverId = null;
+        }
         const data: any = await this.apiService.addVehicle(this.form.value);
         this.dialogRef.close(true);
       } else {

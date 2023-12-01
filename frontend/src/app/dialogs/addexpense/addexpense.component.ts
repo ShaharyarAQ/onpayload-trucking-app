@@ -73,6 +73,9 @@ export class AddexpenceComponent implements OnInit {
     }
     else {
       if (this.form.valid) {
+        if (this.form.value.vehicleId === '') {
+          this.form.value.vehicleId = this.form.value.vehicleId = null;
+        }
         const data: any = await this.apiService.addExpense(this.form.value);
         this.dialogRef.close(true);
       } else {

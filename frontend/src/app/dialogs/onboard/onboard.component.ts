@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { AbstractControl, FormBuilder, FormGroup ,Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiService } from "src/services/api.service";
 
@@ -10,7 +10,7 @@ import { ApiService } from "src/services/api.service";
   templateUrl: "onboard.component.html",
   styleUrls: ['./onboard.component.scss']
 })
-export class OnboardComponent{
+export class OnboardComponent {
 
   form: FormGroup;
   memberInfo: any;
@@ -27,41 +27,52 @@ export class OnboardComponent{
   ngOnInit() {
     this.isUpdate = this.data?.isUpdate;
     this.form = this.formBuilder.group({
-      firstName: [this.isUpdate ? this.data.memberInfo.firstName : '',Validators.required],
-      lastName: [this.isUpdate ? this.data.memberInfo.lastName : '',Validators.required ],
-      licenseId: [this.isUpdate ? this.data.memberInfo.licenseId : '',Validators.required],
-      contactNumber: [this.isUpdate ? this.data.memberInfo.contactNumber : '',Validators.required],
-      emailAddress: [this.isUpdate ? this.data.memberInfo.emailAddress : '',Validators.required],
+      firstName: [this.isUpdate ? this.data.memberInfo.firstName : '', Validators.required],
+      lastName: [this.isUpdate ? this.data.memberInfo.lastName : '', Validators.required],
+      licenseId: [this.isUpdate ? this.data.memberInfo.licenseId : '', Validators.required],
+      contactNumber: [this.isUpdate ? this.data.memberInfo.contactNumber : '', Validators.required],
+      emailAddress: [this.isUpdate ? this.data.memberInfo.emailAddress : '', Validators.required],
       emergencyContactNumber: [this.isUpdate ? this.data.memberInfo.emergencyContactNumber : ''],
       mailAddress: [this.isUpdate ? this.data.memberInfo.mailAddress : ''],
       date: [this.isUpdate ? this.data.memberInfo.date : '', Validators.required],
-      jobTitle: [this.isUpdate ? this.data.memberInfo.jobTitle : '',Validators.required],
-      employmentType: [this.isUpdate ? this.data.memberInfo.employmentType : '',Validators.required],
+      jobTitle: [this.isUpdate ? this.data.memberInfo.jobTitle : '', Validators.required],
+      employmentType: [this.isUpdate ? this.data.memberInfo.employmentType : '', Validators.required],
+      file: [null],
       note: [this.isUpdate ? this.data.memberInfo.note : ''],
     });
+  }
+
+  onFileChange(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({
+      file: file
+    });
+    this.form.get('file').updateValueAndValidity()
+    // File Preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      // this.preview = reader.result as string;
+    }
+    reader.readAsDataURL(file)
   }
 
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
   }
-  
-  async onSubmit() {
 
+  async onSubmit() {
     if (this.isUpdate) {
-      const response: any = await this.apiService.updateMember(
+      await this.apiService.updateMember(
         this.data.memberInfo.id,
         this.form.value
       );
-      // console.log(response);
       this.snackBar.open('Team Member Updated');
       this.dialogRef.close(true);
     }
     else {
       if (this.form.valid) {
-        const data: any = await this.apiService.addMember(this.form.value);
+        await this.apiService.addMember(this.form.value);
         this.dialogRef.close(true);
-      } else {
-        // error
       }
     }
   }
