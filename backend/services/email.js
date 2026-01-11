@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
     // port: process.env.MAIL_PORT,
     // secure: false,
     auth: {
-        user: "shaharyarahmad233@gmail.com",
+        user: "none@none.com", //Enter sender's email address here
         pass: "badd faua dtfb xrkx",
     },
 });
@@ -28,7 +28,7 @@ const SENDMAIL = async (mailDetails, callback) => {
 // Send default template email function
 const sendDefaultEmail = async (to, subject, message) => {
     const options = {
-        from: "OnPayload <shaharyarahmad233@gmail.com>", // sender address
+        user: "none@none.com", //Enter sender's email address here
         to,
         subject,
         text: message,
@@ -45,7 +45,7 @@ const sendDefaultEmail = async (to, subject, message) => {
 // Send default template email function
 const sendLoadEmail = async (to, subject, body) => {
     const options = {
-        from: "OnPayload <shaharyarahmad233@gmail.com>", // sender address
+        user: "none@none.com", //Enter sender's email address here
         to,
         subject,
         html: LOAD_TEMPLATE(body),
