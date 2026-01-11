@@ -12,12 +12,8 @@ export class MemberinfoComponent implements OnInit {
 
   memberInfo: any;
 
-  ngOnInit() {
-    this.getMemberInfo(this.data.id)
-  }
-
-  async getMemberInfo(id) {
-    this.memberInfo = await this.apiService.getMemberInfo(id);
+  async ngOnInit() {
+    this.memberInfo = await this.apiService.getMemberInfo(this.data.id);
   }
 
 }

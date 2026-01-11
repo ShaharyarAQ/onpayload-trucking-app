@@ -4,6 +4,7 @@ import { Location } from "@angular/common";
 import { Router } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
@@ -194,5 +195,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(){
      window.removeEventListener("resize", this.updateColor);
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

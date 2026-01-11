@@ -22,7 +22,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    email: {
+    emailAddress: {
       type: DataTypes.STRING(128),
       allowNull: true
     },

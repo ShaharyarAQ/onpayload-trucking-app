@@ -12,13 +12,8 @@ export class ExpenseinfoComponent {
 
   expenseInfo: any;
 
-  ngOnInit() {
-    this.getExpenseInfo(this.data.id)
+  async ngOnInit() {
+    this.expenseInfo = await this.apiService.getExpenseInfo(this.data.id);
   }
-
-  async getExpenseInfo(id) {
-    this.expenseInfo = await this.apiService.getExpenseInfo(id);    
-  }
-
 
 }

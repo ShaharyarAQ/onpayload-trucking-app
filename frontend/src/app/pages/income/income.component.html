@@ -33,7 +33,7 @@
         
           <ng-container matColumnDef="date">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
-            <mat-cell *matCellDef="let income"> {{income.date}} </mat-cell>
+            <mat-cell *matCellDef="let income"> {{income.date | date}} </mat-cell>
           </ng-container>
       
           <ng-container matColumnDef="category">
@@ -68,7 +68,7 @@
                 <i class=" tim-icons icon-alert-circle-exc" (click)="incomeInfo(income.id)" ></i>
               </button>
               <button type="button" rel="tooltip" class="btn btn-link btn-icon btn-sm">
-                <i class=" tim-icons icon-pencil"></i>
+                <i class=" tim-icons icon-pencil" (click)="updateIncome(income.id)"></i>
               </button>
               <button type="button" rel="tooltip" class="btn btn-link btn-icon btn-sm">
                 <i class=" tim-icons icon-trash-simple" (click)="deleteDialog(income.id)"></i>

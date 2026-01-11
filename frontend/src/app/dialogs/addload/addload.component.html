@@ -1,42 +1,48 @@
-<div class=" content">
+<div *ngIf="!loader" class=" content">
+    <div class=" row">
+        <div class=" col-md-12 text-center">
+            Loading...
+        </div>
+    </div>
+</div>
+
+<div *ngIf="loader" class=" content">
     <div class=" row">
         <div class=" col-md-12">
             <div class=" card">
                 <div class=" card-header">
-                    <h3 class=" title">Add Load</h3>
+                    <h3 class=" title">{{isUpdate ? 'Update' : 'Add'}} Load</h3>
                 </div>
                 <div class=" card-body">
-                    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+                    <form (ngSubmit)="onSubmit()" [formGroup]="form">
                         <div class=" row">
                             <div class=" col-md-3 pr-md-1">
                                 <div class=" form-group">
                                     <label>Date</label>
-                                    <input class=" form-control" placeholder="" type="date" value=""
-                                    ngModel name="date">
+                                    <input class=" form-control" placeholder="" type="date" formControlName="date">
                                 </div>
                             </div>
                             <div class=" col-md-5 px-md-1">
                                 <div class=" form-group">
-                                    <label> Driver  </label>
-                                    <select class="form-control" aria-label="Default select example"
-                                    ngModel name="driver">
-                                        <option selected>Choose an Option</option>
-                                        <option value="1">Driver 1</option>
-                                        <option value="2">Driver 1</option>
+                                    <label> Driver </label>
+                                    <select class="form-control" formControlName="driverId">
+                                        <option disabled="true">Please select one</option>
+                                        <option *ngFor="let driver of drivers;" value="{{driver.id}}">{{driver.firstName
+                                            + " " +
+                                            driver.lastName}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class=" col-md-1 px-md-1 float-right pt-4">
                                 <button type="button" rel="tooltip" class="btn btn-warning btn-icon btn-sm"
-                                    (click)="addVehicle()">
+                                    (click)="addMember()">
                                     <i class=" tim-icons icon-simple-add"></i>
                                 </button>
                             </div>
                             <div class=" col-md-3 pl-md-1">
                                 <div class=" form-group">
                                     <label> Pay </label>
-                                    <input class=" form-control" placeholder="" type="text" value="" 
-                                    ngModel name="pay">
+                                    <input class=" form-control" placeholder="" type="text" formControlName="pay">
                                 </div>
                             </div>
                         </div>
@@ -44,22 +50,22 @@
                             <div class=" col-md-5 pr-md-1">
                                 <div class=" form-group">
                                     <label> Pickup City </label>
-                                    <input class=" form-control" placeholder="" type="text" value=""
-                                    ngModel name="pickupCity">
+                                    <input class=" form-control" placeholder="" type="text"
+                                        formControlName="pickupCity">
                                 </div>
                             </div>
                             <div class=" col-md-3 px-md-1">
                                 <div class=" form-group">
                                     <label> State</label>
-                                    <input class=" form-control" placeholder="" type="text" value=""
-                                    ngModel name="pickupState">
+                                    <input class=" form-control" placeholder="" type="text"
+                                        formControlName="pickupState">
                                 </div>
                             </div>
                             <div class=" col-md-4 pl-md-1">
                                 <div class=" form-group">
                                     <label> Zip Code</label>
-                                    <input class=" form-control" placeholder="" type="text" value=""
-                                    ngModel name="pickupZipcode">
+                                    <input class=" form-control" placeholder="" type="text"
+                                        formControlName="pickupZipcode">
                                 </div>
                             </div>
                         </div>
@@ -67,22 +73,22 @@
                             <div class=" col-md-5 pr-md-1">
                                 <div class=" form-group">
                                     <label> Destination City </label>
-                                    <input class=" form-control" placeholder="" type="text" value="" 
-                                    ngModel name="destinationCity">
+                                    <input class=" form-control" placeholder="" type="text"
+                                        formControlName="destinationCity">
                                 </div>
                             </div>
                             <div class=" col-md-3 px-md-1">
                                 <div class=" form-group">
                                     <label> State</label>
-                                    <input class=" form-control" placeholder="" type="text" value="" 
-                                    ngModel name="destinationState">
+                                    <input class=" form-control" placeholder="" type="text"
+                                        formControlName="destinationState">
                                 </div>
                             </div>
                             <div class=" col-md-4 pl-md-1">
                                 <div class=" form-group">
                                     <label> Zip Code</label>
-                                    <input class=" form-control" placeholder="" type="text" value="" 
-                                    ngModel name="destinationZipcode">
+                                    <input class=" form-control" placeholder="" type="text"
+                                        formControlName="destinationZipcode">
                                 </div>
                             </div>
                         </div>
@@ -90,15 +96,13 @@
                             <div class=" col-md-3 pr-md-1">
                                 <div class=" form-group">
                                     <label>Distance (miles)</label>
-                                    <input class=" form-control" placeholder="" type="text" 
-                                    ngModel name="distance">
+                                    <input class=" form-control" placeholder="" type="text" formControlName="distance">
                                 </div>
                             </div>
                             <div class=" col-md-4 px-md-1">
                                 <div class=" form-group">
                                     <label> Load Type </label>
-                                    <select class="form-control" aria-label="Default select example"
-                                    ngModel name="loadType">
+                                    <select class="form-control" formControlName="loadType">
                                         <option selected>Choose an Option</option>
                                         <option value="Dry Van">Dry Van</option>
                                         <option value="Reefer">Reefer</option>
@@ -122,17 +126,17 @@
                             <div class=" col-md-4 pl-md-1 px-md-1">
                                 <div class=" form-group">
                                     <label> Dispatch Name </label>
-                                    <select class="form-control" aria-label="Default select example"
-                                    ngModel name="dispatchName">
-                                        <option selected>Choose a Member</option>
-                                        <option value="Team Member 1">Team Member 1</option>
-                                        <option value="Team Member 2">Team Member 2</option>
+                                    <select class="form-control" formControlName="dispatcherId">
+                                        <option disabled="true">Please select one</option>
+                                        <option *ngFor="let member of members;" value="{{member.id}}">{{member.firstName
+                                            + " " +
+                                            member.lastName}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class=" col-md-1 px-md-1 float-right pt-4">
                                 <button type="button" rel="tooltip" class="btn btn-warning btn-icon btn-sm"
-                                    (click)="addVehicle()">
+                                    (click)="addMember()">
                                     <i class=" tim-icons icon-simple-add"></i>
                                 </button>
                             </div>
@@ -141,11 +145,11 @@
                             <div class=" col-md-6 pr-md-1">
                                 <div class=" form-group">
                                     <label> Vehicle </label>
-                                    <select class="form-control" aria-label="Default select example"
-                                    ngModel name="vehicle">
-                                        <option selected>Choose an Option</option>
-                                        <option value="Vehicle 1">Vehicle 1</option>
-                                        <option value="Vehicle 2">Vehicle 2</option>
+                                    <select class="form-control" formControlName="vehicleId">
+                                        <option disabled="true">Please select one</option>
+                                        <option *ngFor="let vehicle of vehicles;" value="{{vehicle.id}}">
+                                            {{vehicle.plateNumber + " " +
+                                            vehicle.vehicleType}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -158,8 +162,11 @@
                             <div class=" col-md-5 pl-md-1">
                                 <div class=" form-group">
                                     <label> Trailer Number </label>
-                                    <input class=" form-control" placeholder="" type="text" 
-                                    ngModel name="trailerNumber">
+                                    <select class="form-control" formControlName="trailerId">
+                                        <option disabled="true">Please select one</option>
+                                        <option *ngFor="let trailer of trailers;" value="{{trailer.id}}">
+                                            {{trailer.plateNumber}}</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -167,11 +174,11 @@
                             <div class=" col-md-6 pr-md-1">
                                 <div class=" form-group">
                                     <label> Client </label>
-                                    <select class="form-control" aria-label="Default select example"
-                                    ngModel name="client">
-                                        <option selected>Choose an Option</option>
-                                        <option value="Client 1">Client 1</option>
-                                        <option value="Client 2">Client 2</option>
+                                    <select class="form-control" formControlName="clientId">
+                                        <option disabled="true">Please select one</option>
+                                        <option *ngFor="let client of clients;" value="{{client.id}}">{{client.firstName
+                                            + " " +
+                                            client.lastName}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -184,7 +191,7 @@
 
                         </div>
                         <br>
-                        <div class=" row">
+                        <!-- <div class=" row">
                             <div class=" col-md-6 pr-md-1">
                                 <div class=" form-group">
                                     <div>
@@ -197,19 +204,21 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <br>
                         <div class=" row">
                             <div class=" col-md-12">
                                 <div class=" form-group">
                                     <label>Note</label>
-                                    <textarea class=" form-control" cols="" placeholder="" rows="" value=""
-                                    ngModel name="note"></textarea>
+                                    <textarea class=" form-control" cols="" placeholder="" rows=""
+                                        formControlName="note"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="row float-right">
-                            <button type="submit" class="btn btn-danger" [disabled]="!f.valid">Add Load</button>
+                            <button type="submit" class="btn btn-danger" [disabled]="!form.valid">{{isUpdate ? 'Update'
+                                : 'Add'}}
+                                Load</button>
                         </div>
                     </form>
                 </div>

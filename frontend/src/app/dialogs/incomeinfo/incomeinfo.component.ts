@@ -12,12 +12,8 @@ export class IncomeinfoComponent {
 
   incomeInfo: any;
 
-  ngOnInit() {
-    this.getIncomeInfo(this.data.id)
-  }
-
-  async getIncomeInfo(id) {
-    this.incomeInfo = await this.apiService.getIncomeInfo(id);    
+  async ngOnInit() {
+    this.incomeInfo = await this.apiService.getIncomeInfo(this.data.id);
   }
 
 }

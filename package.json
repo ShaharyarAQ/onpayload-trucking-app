@@ -1,0 +1,13 @@
+{
+  "name": "onpayload",
+  "version": "1.0.0",
+  "scripts": {
+    "dev:install": "npm i && cd frontend && npm i && cd ../backend && npm i",
+    "dev:client": "cd frontend && npm run start",
+    "dev:server": "cd backend && npm run start",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\""
+  },
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  }
+}

@@ -1,3 +1,5 @@
+const db = require("./index");
+
 module.exports = function (sequelize, DataTypes) {
   var Member = sequelize.define('Member', {
     id: {
@@ -68,7 +70,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
       type: DataTypes.DATE
     }
-  });
+  }, {});
 
   return Member;
 };

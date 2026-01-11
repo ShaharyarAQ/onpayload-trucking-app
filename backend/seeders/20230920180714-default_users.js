@@ -10,7 +10,7 @@ module.exports = {
       username: 'admin',
       firstName: 'Admin',
       lastName: 'OnPayload',
-      email: 'admin@onpayload.com',
+      emailAddress: 'admin@onpayload.com',
       password,
       role: 'admin',
       createdAt: new Date(),

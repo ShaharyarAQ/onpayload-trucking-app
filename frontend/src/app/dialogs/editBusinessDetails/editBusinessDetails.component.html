@@ -1,0 +1,40 @@
+<div class=" content">
+    <div class=" row">
+        <div class=" col-md-12">
+            <div class=" card">
+                <div class=" card-header">
+                    <h3 class=" title">Edit Business Details</h3>
+                </div>
+                <div class=" card-body">
+                    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+                        <div class=" row">
+                            <div class=" col-md-6 pr-md-1">
+                                <div class=" form-group">
+                                    <label>Business Name</label>
+                                    <input class=" form-control" type="text" formControlName="businessName">
+                                </div>
+                            </div>
+                            <div class=" col-md-6 pl-md-1">
+                                <div class=" form-group">
+                                    <label> EIN </label>
+                                    <input class=" form-control" type="text" formControlName="ein">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-12">
+                                <div class=" form-group">
+                                    <label>Address</label>
+                                    <input class=" form-control" type="text" formControlName="address">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row float-right">
+                            <button type="submit" class="btn btn-danger">Edit Business Details</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

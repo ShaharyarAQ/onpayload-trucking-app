@@ -63,13 +63,13 @@ export const ROUTES: RouteInfo[] = [
     icon: "icon-bus-front-12",
     class: ""
   },
-  {
-    path: "/reports",
-    title: "Reports",
-    rtlTitle: "طباعة",
-    icon: "icon-align-center",
-    class: ""
-  },
+  // {
+  //   path: "/reports",
+  //   title: "Reports",
+  //   rtlTitle: "طباعة",
+  //   icon: "icon-align-center",
+  //   class: ""
+  // },
   {
     path: "/IFTA",
     title: "IFTA",

@@ -2,18 +2,18 @@ import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ApiService } from "src/services/api.service";
 
 
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatSortModule} from '@angular/material/sort'
-import {MatTableModule} from '@angular/material/table'
-import {MatPaginatorModule} from "@angular/material/paginator";
-import {MatStepperModule} from "@angular/material/stepper";
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSortModule } from '@angular/material/sort'
+import { MatTableModule } from '@angular/material/table'
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -42,11 +42,14 @@ import { AddIFTAComponent } from "src/app/dialogs/addIFTA/addIFTA.component";
 import { OnboardComponent } from "src/app/dialogs/onboard/onboard.component";
 import { AddpayslipComponent } from "src/app/dialogs/addpayslip/addpayslip.component";
 
+import { LoadinfoComponent } from "src/app/dialogs/loadinfo/loadinfo.component";
+
+import { EditBusinessDetails } from "src/app/dialogs/editBusinessDetails/editBusinessDetails.component";
+import { EditIftaSettings } from "src/app/dialogs/editIftaSettings/editIftaSettings.component";
+
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-
-
 @NgModule({
   imports: [
     CommonModule,
@@ -60,7 +63,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     MatPaginatorModule,
     MatStepperModule,
     MatSnackBarModule,
-    MatTabsModule
+    MatTabsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     DashboardComponent,
@@ -85,7 +89,13 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     AddvehicleComponent,
     AddIFTAComponent,
     OnboardComponent,
-    AddpayslipComponent
+    AddpayslipComponent,
+
+    LoadinfoComponent,
+
+    EditBusinessDetails,
+    EditIftaSettings
+
     // RtlComponent
   ],
 
@@ -93,12 +103,12 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     ApiService,
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
-        duration: 1500, 
-        verticalPosition: 'top',
+        duration: 3500,
+        verticalPosition: 'bottom',
         horizontalPosition: 'center',
         panelClass: ["snackbar"],
       }
-    },
+    }
   ]
 })
 export class AdminLayoutModule { }

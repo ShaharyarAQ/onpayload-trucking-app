@@ -1,100 +1,157 @@
-<div class="content">
-    <h4>Load Information</h4>
-        <div class=" col-md-12">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td class="left">
-                            <strong>Date</strong>
-                        </td>
-                        <td class="right">{{loadInfo.date}}</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <strong>Driver</strong>
-                        </td>
-                        <td class="right">{{loadInfo.driver}}</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <strong>Pay</strong>
-                        </td>
-                        <td class="right">{{loadInfo.pay}}</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <strong>Pick up</strong>
-                        </td>
-                        <td class="right">{{loadInfo.pickupCity}},&nbsp;{{loadInfo.pickupState}}&nbsp;{{loadInfo.pickupZipcode}}</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <strong>Destination</strong>
-                        </td>
-                        <td class="right">{{loadInfo.destinationCity}},&nbsp;{{loadInfo.destinationState}}&nbsp;{{loadInfo.destinationZipcode}}</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <strong>Distance (Miles)</strong>
-                        </td>
-                        <td class="right">{{loadInfo.distance}}</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <strong>Rate Per Mile (RPM)</strong>
-                        </td>
-                        <td class="right">${{loadInfo.pay/loadInfo.distance}}</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <strong>Load Type</strong>
-                        </td>
-                        <td class="right">{{loadInfo.loadType}}</td>
-                    </tr> 
-                    <tr>
-                        <td class="left">
-                            <strong>Dispatch Name</strong>
-                        </td>
-                        <td class="right">{{loadInfo.dispatchName}}</td>
-                    </tr> 
-                    <tr>
-                        <td class="left">
-                            <strong>Vehicle</strong>
-                        </td>
-                        <td class="right">{{loadInfo.vehicle}}</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <strong>Trailer Number</strong>
-                        </td>
-                        <td class="right">{{loadInfo.trailerNumber}}</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <strong>Client</strong>
-                        </td>
-                        <td class="right">{{loadInfo.client}}</td>
-                    </tr>
-                    <tr>
-                        <td class="left">
-                            <strong>Status</strong>
-                        </td>
-                        <td class="right"></td>
-                    </tr> 
-                    <tr>
-                        <td class="left">
-                            <strong>Note</strong>
-                        </td>
-                        <td class="right"></td>
-                    </tr> 
-                    <tr>
-                        <td class="left">
-                            <strong>Attachment</strong>
-                        </td>
-                        <td class="right"></td>
-                    </tr> 
-                </tbody>
-            </table>
+<mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Load Info">
+        <br>
+        <div class="content">
+            <div class=" col-md-12">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="left">
+                                <strong>Date</strong>
+                            </td>
+                            <td class="right">{{loadInfo?.date}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Driver</strong>
+                            </td>
+                            <td class="right">{{loadInfo?.driver?.firstName + ' ' + loadInfo?.driver?.lastName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Pay</strong>
+                            </td>
+                            <td class="right">{{loadInfo?.pay}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Pick up</strong>
+                            </td>
+                            <td class="right">
+                                {{loadInfo?.pickupCity}},&nbsp;{{loadInfo?.pickupState}}&nbsp;{{loadInfo?.pickupZipcode}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Destination</strong>
+                            </td>
+                            <td class="right">
+                                {{loadInfo?.destinationCity}},&nbsp;{{loadInfo?.destinationState}}&nbsp;{{loadInfo?.destinationZipcode}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Distance (Miles)</strong>
+                            </td>
+                            <td class="right">{{loadInfo?.distance}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Rate Per Mile (RPM)</strong>
+                            </td>
+                            <td class="right">${{(loadInfo?.pay/loadInfo?.distance).toFixed(2)}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Load Type</strong>
+                            </td>
+                            <td class="right">{{loadInfo?.loadType}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Dispatch Name</strong>
+                            </td>
+                            <td class="right">{{loadInfo?.dispatcher?.firstName + ' ' + loadInfo?.dispatcher?.lastName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Vehicle</strong>
+                            </td>
+                            <td class="right">{{loadInfo?.vehicle?.plateNumber + ' - ' +
+                                loadInfo?.vehicle?.vehicleType}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Trailer Number</strong>
+                            </td>
+                            <td class="right">{{loadInfo?.trailer?.plateNumber}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Client</strong>
+                            </td>
+                            <td class="right">{{loadInfo?.client?.firstName + ' ' + loadInfo?.client?.lastName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Status</strong>
+                            </td>
+                            <td class="right">{{(loadInfo?.status['current'])}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Note</strong>
+                            </td>
+                            <td class="right">{{loadInfo?.note}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <strong>Attachment</strong>
+                            </td>
+                            <td class="right"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        
-    </div>
+    </mat-tab>
+    <mat-tab label="Timeline">
+        <br>
+        <div class="content">
+            <div class=" col-md-12">
+                <ul class="list-group mb-3">
+                    <ng-container *ngFor="let status of timeline">
+                        <ng-container *ngIf="status.type === 'completed'">
+                            <li class="list-group-item d-flex justify-content-between align-items-center bg-success">
+                                <div>
+                                    <h3 class="my-0">{{status.name}}</h3>
+                                    <small class="text-muted"><strong>Time: {{status.time || 'N/A'}}</strong> </small>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path
+                                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                </svg>
+                            </li>
+                        </ng-container>
+                        <ng-container *ngIf="status.type === 'pending'">
+                            <li class="list-group-item d-flex justify-content-between bg-light">
+                                <div>
+                                    <h3 class="my-0">{{status.name}}</h3>
+                                    <small class="text-muted"><strong>Time: {{status.time || 'N/A'}}</strong></small>
+                                </div>
+
+                            </li>
+                        </ng-container>
+                        <ng-container *ngIf="status.type === 'in progress'">
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h3 class="my-0">{{status.name}}</h3>
+                                    <small class="text-muted"><strong>Time: {{status.time || 'N/A'}}</strong></small>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-hourglass" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 1.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1-.5-.5zm2.5.5v1a3.5 3.5 0 0 0 1.989 3.158c.533.256 1.011.791 1.011 1.491v.702c0 .7-.478 1.235-1.011 1.491A3.5 3.5 0 0 0 4.5 13v1h7v-1a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351v-.702c0-.7.478-1.235 1.011-1.491A3.5 3.5 0 0 0 11.5 3V2h-7z" />
+                                </svg>
+                            </li>
+                        </ng-container>
+                    </ng-container>
+                </ul>
+            </div>
+        </div>
+    </mat-tab>
+
+</mat-tab-group>

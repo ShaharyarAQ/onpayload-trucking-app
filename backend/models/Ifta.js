@@ -1,29 +1,29 @@
 module.exports = (sequelize, Sequelize) => {
-  const Ifta = sequelize.define("Ifta", {
+  const Ifta = sequelize.define("Iftas", {
     id: {
-      allowNull: true,
+      allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
     },
     date: {
       type: Sequelize.DATE,
-      allowNull: true
+      allowNull: false
     },
     jurisdiction: {
-      type: Sequelize.ENUM(['AK', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
+      type: Sequelize.ENUM(['AL','AK', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
         'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT',
         'NC', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT',
         'VT', 'VA', 'WA', 'WI', 'WV', 'WY', 'Can', 'Mex']),
-      allowNull: true
+      allowNull: false
     },
     tripType: {
       type: Sequelize.ENUM(['Loaded', 'Not Loaded']),
-      allowNull: true
+      allowNull: false
     },
     vehicle: {
       type: Sequelize.STRING(20),
-      allowNull: true
+      allowNull: false
     },
     odometerStart: {
       type: Sequelize.INTEGER,
@@ -35,7 +35,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     distance: {
       type: Sequelize.INTEGER,
-      allowNull: true
+      allowNull: false
     },
     nonTaxableDistance: {
       type: Sequelize.INTEGER,
@@ -43,7 +43,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     tollMiles: {
       type: Sequelize.INTEGER,
-      allowNull: true
+      allowNull: false
     },
     nonTollMiles: {
       type: Sequelize.INTEGER,
@@ -51,7 +51,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     fuelPurchased: {
       type: Sequelize.INTEGER,
-      allowNull: true
+      allowNull: false
     },
     note: {
       allowNull: true,

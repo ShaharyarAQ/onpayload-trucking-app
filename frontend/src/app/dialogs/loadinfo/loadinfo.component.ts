@@ -1,23 +1,23 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { ApiService } from "src/services/api.service";
+import { LoadService } from "src/services/load.service";
 
 @Component({
   selector: "app-loadinfo",
   templateUrl: "loadinfo.component.html"
 })
 export class LoadinfoComponent {
-  constructor( @Inject(MAT_DIALOG_DATA) public data: any,
-  private apiService: ApiService ) {}
 
   loadInfo: any;
+  timeline;
+  loader: boolean = false;
 
-  ngOnInit() {
-    this.getLoadInfo(this.data.id)
-  }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+    private loadService: LoadService) { }
 
-  async getLoadInfo(id) {
-    this.loadInfo = await this.apiService.getLoadInfo(id);    
+  async ngOnInit() {
+    this.loadInfo = await this.loadService.get(this.data.id);
+    this.timeline = this.loadInfo.status.timeline;
   }
 
 }

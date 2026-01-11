@@ -7,62 +7,62 @@
                         <td class="left">
                             <strong>Unit Number</strong>
                         </td>
-                        <td class="right">{{vehicleInfo.unitNumber}}</td>
+                        <td class="right">{{vehicleInfo?.unitNumber}}</td>
                     </tr>
                     <tr>
                         <td class="left">
                             <strong>Make</strong>
                         </td>
-                        <td class="right">{{vehicleInfo.make}}</td>
+                        <td class="right">{{vehicleInfo?.make}}</td>
                     </tr>
                     <tr>
                         <td class="left">
                             <strong>Model</strong>
                         </td>
-                        <td class="right">{{vehicleInfo.model}}</td>
+                        <td class="right">{{vehicleInfo?.model}}</td>
                     </tr>
                     <tr>
                         <td class="left">
                             <strong>Year</strong>
                         </td>
-                        <td class="right">{{vehicleInfo.year}}</td>
+                        <td class="right">{{vehicleInfo?.year}}</td>
                     </tr>
                     <tr>
                         <td class="left">
                             <strong>Odometer</strong>
                         </td>
-                        <td class="right">{{vehicleInfo.odometer}}</td>
+                        <td class="right">{{vehicleInfo?.odometer}}</td>
                     </tr>
                     <tr>
                         <td class="left">
                             <strong>Plate Number</strong>
                         </td>
-                        <td class="right">{{vehicleInfo.plateNumber}}</td>
+                        <td class="right">{{vehicleInfo?.plateNumber}}</td>
                     </tr>
                     <tr>
                         <td class="left">
                             <strong>VIN</strong>
                         </td>
-                        <td class="right">{{vehicleInfo.vin}}</td>
+                        <td class="right">{{vehicleInfo?.vin}}</td>
                     </tr>
                     <tr>
                         <td class="left">
                             <strong>Vehicle Type</strong>
                         </td>
-                        <td class="right">{{vehicleInfo.vehicleType}}</td>
+                        <td class="right">{{vehicleInfo?.vehicleType}}</td>
                     </tr>
                     <tr>
                         <td class="left">
                             <strong>Assigned Driver</strong>
                         </td>
-                        <td class="right">{{vehicleInfo.assignedDriver}}</td>
+                        <td class="right">{{vehicleInfo?.driver?.firstName + ' ' + vehicleInfo?.driver?.lastName}}</td>
                     </tr>
                     
                     <tr>
                         <td class="left">
                             <strong>Note</strong>
                         </td>
-                        <td class="right">{{vehicleInfo.note}}</td>
+                        <td class="right">{{vehicleInfo?.note}}</td>
                     </tr>
                 </tbody>
             </table>

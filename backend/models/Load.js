@@ -1,3 +1,5 @@
+const db = require("./index");
+
 module.exports = function (sequelize, DataTypes) {
     var Load = sequelize.define('Load', {
         id: {
@@ -6,13 +8,26 @@ module.exports = function (sequelize, DataTypes) {
             primaryKey: true,
             type: DataTypes.INTEGER
         },
+        hashedId: {
+            allowNull: false,
+            type: DataTypes.STRING(32)
+        },
+        status: {
+            allowNull: false,
+            defaultValue: { current: 'Created', timeline: [] },
+            type: DataTypes.JSON
+        },
         date: {
             type: DataTypes.DATE,
             allowNull: true
         },
-        driver: {
-            type: DataTypes.STRING(80),
-            allowNull: true
+        driverId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Member',
+                key: 'id'
+            },
         },
         pay: {
             type: DataTypes.INTEGER,
@@ -54,21 +69,37 @@ module.exports = function (sequelize, DataTypes) {
                 'Other']),
             allowNull: true
         },
-        dispatchName: {
-            type: DataTypes.STRING(80),
-            allowNull: true
-        },
-        vehicle: {
-            type: DataTypes.STRING(40),
-            allowNull: true
-        },
-        trailerNumber: {
+        dispatcherId: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            allowNull: false,
+            references: {
+                model: 'Members',
+                key: 'id'
+            },
         },
-        client: {
-            type: DataTypes.STRING(80),
-            allowNull: true
+        vehicleId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Vehicles',
+                key: 'id'
+            },
+        },
+        trailerId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Vehicles',
+                key: 'id'
+            },
+        },
+        clientId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Clients',
+                key: 'id'
+            },
         },
         note: {
             type: DataTypes.STRING(500),
@@ -88,7 +119,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: true,
             type: DataTypes.DATE
         }
-    });
+    }, {});
 
     return Load;
 };

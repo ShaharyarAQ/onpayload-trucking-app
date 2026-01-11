@@ -3,24 +3,44 @@ const VehicleModel = db.vehicle;
 
 
 exports.getVehicles = async (req, res) => {
-    const vehicles = await VehicleModel.findAll();
-    try{
+    const vehicles = await VehicleModel.findAll({
+        include: [
+            { model: db.member, as: 'driver' },
+        ]
+    });
+    try {
         return res.status(200).json(vehicles);
     }
     catch (error) {
-        return res.status(404).json({message: 'Unable to get vehicles data'});
+        return res.status(404).json({ message: 'Unable to get vehicles data' });
     }
 }
 
 exports.getVehicleInfo = async (req, res) => {
     const vehicleID = req.query.param;
     try {
-        const vehicleInfo = await VehicleModel.findOne({ where: { id: vehicleID } });
+        const vehicleInfo = await VehicleModel.findOne({
+            where: { id: vehicleID },
+            include: [
+                { model: db.member, as: 'driver' },
+            ]
+        });
         return res.status(200).json(vehicleInfo);
     } catch (error) {
-        return res.status(404).json({message: 'Unable to get vehicle information'});
+        return res.status(404).json({ message: 'Unable to get vehicle information' });
     }
 
+}
+
+exports.updateVehicle = async (req, res) => {
+    try {
+        const response = await VehicleModel.update(req.body, { where: { id: req.query.param } });
+        return res.status(200).json(response);
+    }
+    catch (error) {
+        console.log('Error')
+        return res.status(404).json({ message: 'Unable to update vehicle' });
+    }
 }
 
 exports.addVehicle = async (req, res) => {
@@ -40,7 +60,7 @@ exports.deleteVehicle = async (req, res) => {
         return res.status(200).json(response);
     } catch (error) {
         console.log('Error')
-        return res.status(404).json({message: 'Unable to delete vehicle'});
+        return res.status(404).json({ message: 'Unable to delete vehicle' });
     }
-    
+
 }

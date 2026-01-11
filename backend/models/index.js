@@ -27,6 +27,8 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+db.user = require("./User")(sequelize, Sequelize);
+db.session = require("./Session")(sequelize, Sequelize);
 db.client = require("./Client")(sequelize, Sequelize);
 db.vehicle = require("./Vehicle")(sequelize, Sequelize);
 db.income = require("./Income")(sequelize, Sequelize);
@@ -34,5 +36,11 @@ db.expense = require("./Expense")(sequelize, Sequelize);
 db.ifta = require("./Ifta")(sequelize, Sequelize);
 db.load = require("./Load")(sequelize, Sequelize);
 db.member = require("./Member")(sequelize, Sequelize);
+
+db.businessDetails = require("./BusinessDetails")(sequelize, Sequelize);
+db.iftaSettings = require("./IftaSettings")(sequelize, Sequelize);
+
+// Relations
+
 
 module.exports = db;

@@ -3,13 +3,14 @@ import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
 import { Routes, RouterModule } from "@angular/router";
 
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { Login } from "./layouts/login-signup/login.component";
-import { Signup } from "./layouts/login-signup/signup.component";
-import { W9FormComponent } from "./pages/w9-form/w9-form.component";
-import { W4FormComponent } from "./pages/w4-form/w4-form.component";
-
+import { LoadStatusComponent } from "./pages/load-status/load-status.component";
+import { employeePayslipComponent } from "./pages/payslips/employee/employeePayslip.component";
+import { independentContractorPayslipComponent } from "./pages/payslips/independent-contractor/independent-contractorPayslip.component";
 
 const routes: Routes = [
   {
@@ -37,18 +38,25 @@ const routes: Routes = [
     ]
   },
   { path: "login", component: Login, },
-  { path: "signup", component: Signup, },
   {
-    path: "w9-form",
-    component: W9FormComponent,
+    path: 'load-status',
+    component: LoadStatusComponent,
   },
   {
-    path: "w4-form",
-    component: W4FormComponent,
+    path: 'employee-payslip',
+    component: employeePayslipComponent,
+  },
+  {
+    path: 'independent-contractor-payslip',
+    component: independentContractorPayslipComponent,
+  },
+  {
+    path: 'load-status',
+    component: LoadStatusComponent,
   },
   {
     path: "**",
-    redirectTo: "dashboard",
+    redirectTo: "login",
     pathMatch: "full"
   },
 ];
@@ -57,6 +65,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     BrowserModule,
+    MatSnackBarModule,
     RouterModule.forRoot(routes, {
       useHash: false
     })
